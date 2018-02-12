@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.minikh.vibrocalc.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="550.0" prefWidth="750.0">
+         <children>
+            <TextField layoutX="55.0" layoutY="373.0" />
+            <Label layoutX="258.0" layoutY="378.0" text="Частота" />
+            <HBox alignment="CENTER" layoutX="322.0" layoutY="38.0" prefHeight="31.0" prefWidth="394.0" spacing="15.0">
+               <children>
+                  <TextField onKeyReleased="#onEditA" />
+                  <ComboBox prefHeight="31.0" prefWidth="70.0" />
+                  <Label contentDisplay="CENTER" text="Виброскорость" textAlignment="JUSTIFY" />
+               </children>
+            </HBox>
+         </children></Pane>
+   </children>
+</GridPane>
