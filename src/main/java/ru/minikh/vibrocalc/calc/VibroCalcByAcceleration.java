@@ -3,12 +3,7 @@ package ru.minikh.vibrocalc.calc;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VibroCalcByAcceleration {
-
-    private final static Double _2_PI = 2 * Math.PI;
-    private final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
-    private final static Double G = 9.80665;
-    private final static Double KILO = 1000.0;
+public class VibroCalcByAcceleration extends VibroCalc {
 
     public Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
 
@@ -20,6 +15,7 @@ public class VibroCalcByAcceleration {
         }
 
         Double accelerationRms = prepareValue(value);
+        accelerationRms = translationValue(value, accelerationRms);
 
         Double _2piFreq = _2_PI * freq;
 
@@ -71,24 +67,7 @@ public class VibroCalcByAcceleration {
         return Result.builder().values(valueMap).build();
     }
 
-    private Double prepareValue(Value value) {
-        Double rms = 0.0;
-        switch (value.getEdIzm()) {
-            case RMS:
-            case NONE:
-                rms = value.getValue();
-                break;
-            case AVG:
-                rms = value.getValue() * AVG_TO_RMS_KOEFF;
-                break;
-            case PEAK:
-                rms = value.getValue() / Math.sqrt(2);
-                break;
-            case PEAK_TO_PEAK:
-                rms = value.getValue() / 2 / Math.sqrt(2);
-                break;
-        }
-
+    private Double translationValue(Value value, Double rms) {
         switch (value.getParameter()) {
             case A_g:
                 rms *= G;
@@ -99,40 +78,7 @@ public class VibroCalcByAcceleration {
             case A_m_sec2:
                 break;
         }
-        return rms;
-    }
 
-    private Value prepareResult(Map.Entry<Parameter, EdIzm> parameter,
-                                Double rmsValue,
-                                Value.ValueBuilder valueBuilder) {
-        Double result;
-        switch (parameter.getValue()) {
-            case RMS:
-            case NONE:
-                result = rmsValue;
-                valueBuilder
-                        .value(result)
-                        .edIzm(parameter.getValue());
-                break;
-            case AVG:
-                result = rmsValue / AVG_TO_RMS_KOEFF;
-                valueBuilder
-                        .value(result)
-                        .edIzm(parameter.getValue());
-                break;
-            case PEAK:
-                result = rmsValue * Math.sqrt(2);
-                valueBuilder
-                        .value(result)
-                        .edIzm(parameter.getValue());
-                break;
-            case PEAK_TO_PEAK:
-                result = rmsValue * Math.sqrt(2) * 2;
-                valueBuilder
-                        .value(result)
-                        .edIzm(parameter.getValue());
-                break;
-        }
-        return valueBuilder.build();
+        return rms;
     }
 }
