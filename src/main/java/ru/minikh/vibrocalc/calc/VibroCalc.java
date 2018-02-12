@@ -7,6 +7,8 @@ public class VibroCalc {
 
     private final static Double _2_PI = 2 * Math.PI;
     private final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
+    private final static Double G = 9.80665;
+    private final static Double KILO = 1000.0;
 
     public Result calculateByAcceleration(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
 
@@ -20,16 +22,16 @@ public class VibroCalc {
             Double result = null;
             switch (parameter.getKey()) {
                 case A_g:
-                    result = accelerationRms / 9.80665;
+                    result = accelerationRms / G;
                     break;
                 case A_m_sec2:
                     result = accelerationRms;
                     break;
                 case A_mm_sec2:
-                    result = accelerationRms * 1000.0;
+                    result = accelerationRms * KILO;
                     break;
                 case V_mm_sec:
-                    result = accelerationRms / _2piFreq * 1000.0;
+                    result = accelerationRms / _2piFreq * KILO;
                     break;
                 case V_m_sec:
                     result = accelerationRms / _2piFreq;
@@ -38,13 +40,13 @@ public class VibroCalc {
                     result = accelerationRms / (_2piFreq) / (_2piFreq);
                     break;
                 case D_mm:
-                    result = accelerationRms / (_2piFreq / 1000.0) / (_2piFreq);
+                    result = accelerationRms / (_2piFreq / KILO) / (_2piFreq);
                     break;
                 case A_db:
-                    result = 20.0 * Math.log10(accelerationRms / Math.pow(10, -6)/ 2);
+                    result = 20.0 * Math.log10(accelerationRms / (G * Math.pow(10, -6)));
                     break;
                 case V_db_m_sec:
-                    result = 20.0 * Math.log10(accelerationRms / Math.pow(10, -6));
+                    result = 20.0 * Math.log10(accelerationRms / Math.pow(10, -9));
                     break;
             }
 
