@@ -3,7 +3,7 @@ package ru.minikh.vibrocalc.calc;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VibroCalcByAcceleration {
+public class VibroCalcByVelocity {
 
     private final static Double _2_PI = 2 * Math.PI;
     private final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
@@ -12,14 +12,14 @@ public class VibroCalcByAcceleration {
 
     public Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
 
-        if (!(value.getParameter() == Parameter.A_g
-                || value.getParameter() == Parameter.A_db
-                || value.getParameter() == Parameter.A_mm_sec2
-                || value.getParameter() == Parameter.A_m_sec2)) {
+        if (!(value.getParameter() == Parameter.V_db_m_sec
+                || value.getParameter() == Parameter.V_db_mm_sec
+                || value.getParameter() == Parameter.V_m_sec
+                || value.getParameter() == Parameter.V_mm_sec)) {
             throw new RuntimeException("Не правильный параметр");
         }
 
-        Double accelerationRms = prepareValue(value);
+        Double velocityRms = prepareValue(value);
 
         Double _2piFreq = _2_PI * freq;
 
@@ -29,34 +29,34 @@ public class VibroCalcByAcceleration {
             Double result = null;
             switch (parameter.getKey()) {
                 case A_g:
-                    result = accelerationRms / G;
+                    result = (velocityRms * _2piFreq) / G / KILO;
                     break;
                 case A_m_sec2:
-                    result = accelerationRms;
+                    result = velocityRms * _2piFreq / KILO;
                     break;
                 case A_mm_sec2:
-                    result = accelerationRms * KILO;
+                    result = velocityRms * _2piFreq;
                     break;
                 case V_mm_sec:
-                    result = accelerationRms / _2piFreq * KILO;
+                    result = velocityRms;
                     break;
                 case V_m_sec:
-                    result = accelerationRms / _2piFreq;
+                    result = velocityRms / KILO;
                     break;
                 case D_m:
-                    result = accelerationRms / (_2piFreq) / (_2piFreq);
+                    result = velocityRms / (_2piFreq * KILO);
                     break;
                 case D_mm:
-                    result = accelerationRms / (_2piFreq / KILO) / (_2piFreq);
+                    result = velocityRms / _2piFreq;
                     break;
                 case A_db:
-                    result = 20.0 * Math.log10(accelerationRms / (G * Math.pow(10, -6)));
+                    result = 20.0 * Math.log10(velocityRms * _2piFreq / KILO / (G * Math.pow(10, -6)));
                     break;
                 case V_db_m_sec:
-                    result = 20.0 * Math.log10(accelerationRms / Math.pow(10, -8));
+                    result = 20.0 * Math.log10(velocityRms / KILO / Math.pow(10, -8));
                     break;
                 case V_db_mm_sec:
-                    result = 20.0 * Math.log10(accelerationRms / Math.pow(10, -6));
+                    result = 20.0 * Math.log10(velocityRms / Math.pow(10, -6));
                     break;
             }
 
@@ -90,13 +90,16 @@ public class VibroCalcByAcceleration {
         }
 
         switch (value.getParameter()) {
-            case A_g:
+            case V_db_m_sec:
                 rms *= G;
                 break;
-            case A_mm_sec2:
+            case V_db_mm_sec:
+                rms *= G;
+                break;
+            case V_m_sec:
                 rms /= KILO;
                 break;
-            case A_m_sec2:
+            case V_mm_sec:
                 break;
         }
         return rms;
