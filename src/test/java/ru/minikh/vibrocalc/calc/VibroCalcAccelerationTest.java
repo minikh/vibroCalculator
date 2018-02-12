@@ -8,7 +8,7 @@ import java.util.Map;
 import static org.junit.Assert.assertEquals;
 
 
-public class VibroCalcTest {
+public class VibroCalcAccelerationTest {
 
     @Test
     public void testCalc1A() {
@@ -18,7 +18,7 @@ public class VibroCalcTest {
                 .parameter(Parameter.A_m_sec2)
                 .build();
 
-        VibroCalc vibroCalc = new VibroCalc();
+        VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
 
         Map<Parameter, EdIzm> parameters = new HashMap<>();
         parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
@@ -34,7 +34,7 @@ public class VibroCalcTest {
         parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
         parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
 
-        Result result = vibroCalc.calculateByAcceleration(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(159.155, value.getValue(), 1.0e-004);
@@ -80,7 +80,7 @@ public class VibroCalcTest {
                 .parameter(Parameter.A_m_sec2)
                 .build();
 
-        VibroCalc vibroCalc = new VibroCalc();
+        VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
 
         Map<Parameter, EdIzm> parameters = new HashMap<>();
         parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
@@ -96,7 +96,7 @@ public class VibroCalcTest {
         parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
         parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
 
-        Result result = vibroCalc.calculateByAcceleration(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(318.31, value.getValue(), 0.001);
@@ -142,7 +142,7 @@ public class VibroCalcTest {
                 .parameter(Parameter.A_mm_sec2)
                 .build();
 
-        VibroCalc vibroCalc = new VibroCalc();
+        VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
 
         Map<Parameter, EdIzm> parameters = new HashMap<>();
         parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
@@ -158,7 +158,7 @@ public class VibroCalcTest {
         parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
         parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
 
-        Result result = vibroCalc.calculateByAcceleration(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(0.159155, value.getValue(), 0.000001);
@@ -204,7 +204,7 @@ public class VibroCalcTest {
                 .parameter(Parameter.A_g)
                 .build();
 
-        VibroCalc vibroCalc = new VibroCalc();
+        VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
 
         Map<Parameter, EdIzm> parameters = new HashMap<>();
         parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
@@ -220,7 +220,7 @@ public class VibroCalcTest {
         parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
         parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
 
-        Result result = vibroCalc.calculateByAcceleration(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(551.821, value.getValue(), 0.01);
@@ -256,5 +256,20 @@ public class VibroCalcTest {
         for (Map.Entry<String, Value> valueEntry : result.getValues().entrySet()) {
             System.out.println(valueEntry.getKey() + ": \t" + valueEntry.getValue().getValue());
         }
+    }
+
+    @Test(expected = RuntimeException.class)
+    public void shouldException() {
+        Value acceleration = Value.builder()
+                .value(1.0)
+                .edIzm(EdIzm.PEAK_TO_PEAK)
+                .parameter(Parameter.V_m_sec)
+                .build();
+
+        VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
+
+        Map<Parameter, EdIzm> parameters = new HashMap<>();
+
+        vibroCalc.calculate(acceleration, parameters, 1.0);
     }
 }

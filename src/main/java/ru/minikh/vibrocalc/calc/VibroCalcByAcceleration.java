@@ -3,16 +3,23 @@ package ru.minikh.vibrocalc.calc;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VibroCalc {
+public class VibroCalcByAcceleration {
 
     private final static Double _2_PI = 2 * Math.PI;
     private final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
     private final static Double G = 9.80665;
     private final static Double KILO = 1000.0;
 
-    public Result calculateByAcceleration(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
+    public Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
 
-        Double accelerationRms = prepareValue(value);
+        if (value.getParameter() != Parameter.A_g
+                || value.getParameter() != Parameter.A_db
+                || value.getParameter() != Parameter.A_mm_sec2
+                || value.getParameter() != Parameter.A_m_sec2){
+            throw new RuntimeException("Не правильный параметр");
+        }
+
+            Double accelerationRms = prepareValue(value);
 
         Double _2piFreq = _2_PI * freq;
 
