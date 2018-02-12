@@ -10,8 +10,37 @@ public class VibroCalc {
 
     public Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
 
-        Double rms = 0.0;
+        Double rms = prepareValue(value);
 
+        Double pi2Freq = PI_2 * freq;
+
+        Map<String, Value> valueMap = new HashMap<>();
+
+        for (Map.Entry<Parameter, EdIzm> parameter : parameters.entrySet()) {
+            switch (parameter.getKey()) {
+                case V_mm_sec:
+                    Double velocityMmSecRms = rms / pi2Freq;
+                    Value.ValueBuilder valueBuilder = Value.builder()
+                            .parameter(parameter.getKey());
+                    Value velocity = prepareResult(parameter, velocityMmSecRms, valueBuilder);
+                    valueMap.put(velocity.getParameter().name(), velocity);
+                    break;
+
+                case V_m_sec:
+                    Double velocityMSecRms = rms / pi2Freq / 1000.0;
+                    valueBuilder = Value.builder()
+                            .parameter(parameter.getKey());
+                    velocity = prepareResult(parameter, velocityMSecRms, valueBuilder);
+                    valueMap.put(velocity.getParameter().name(), velocity);
+                    break;
+            }
+        }
+
+        return Result.builder().values(valueMap).build();
+    }
+
+    private Double prepareValue(Value value) {
+        Double rms = 0.0;
         switch (value.getEdIzm()) {
             case RMS:
                 rms = value.getValue();
@@ -26,92 +55,39 @@ public class VibroCalc {
                 rms = value.getValue() / 2 / Math.sqrt(2);
                 break;
         }
+        return rms;
+    }
 
-        Double pi2Freq = PI_2 * freq;
-
-        Map<String, Value> valueMap = new HashMap<>();
-
-        for (Map.Entry<Parameter, EdIzm> parameter : parameters.entrySet()) {
-            switch (parameter.getKey()) {
-                case V_mm_sec:
-                    Double result;
-                    Double velocityMmSecRms = rms / (pi2Freq);
-                    Value.ValueBuilder valueBuilder = Value.builder()
-                            .parameter(parameter.getKey());
-                    switch (parameter.getValue()) {
-                        case RMS:
-                            result = velocityMmSecRms;
-                            valueBuilder
-                                    .value(result)
-                                    .edIzm(parameter.getValue());
-                            break;
-                        case AVG:
-                            result = velocityMmSecRms / AVG_TO_RMS_KOEFF;
-                            valueBuilder
-                                    .value(result)
-                                    .edIzm(parameter.getValue());
-                            break;
-                        case PEAK:
-                            result = velocityMmSecRms * Math.sqrt(2);
-                            valueBuilder
-                                    .value(result)
-                                    .edIzm(parameter.getValue());
-                            break;
-                        case PEAK_TO_PEAK:
-                            result = velocityMmSecRms * Math.sqrt(2) * 2;
-                            valueBuilder
-                                    .value(result)
-                                    .edIzm(parameter.getValue());
-                            break;
-                    }
-                    Value velocity = valueBuilder.build();
-                    valueMap.put(velocity.getParameter().name(), velocity);
-                    break;
-
-                case V_m_sec:
-                    Double velocityMSecRms = rms / (pi2Freq) / 1000;
-                    valueBuilder = Value.builder()
-                            .parameter(parameter.getKey());
-                    switch (parameter.getValue()) {
-                        case RMS:
-                            result = velocityMSecRms;
-                            valueBuilder
-                                    .value(result)
-                                    .edIzm(parameter.getValue());
-                            break;
-                        case AVG:
-                            result = velocityMSecRms / AVG_TO_RMS_KOEFF;
-                            valueBuilder
-                                    .value(result)
-                                    .edIzm(parameter.getValue());
-                            break;
-                        case PEAK:
-                            result = velocityMSecRms * Math.sqrt(2);
-                            valueBuilder
-                                    .value(result)
-                                    .edIzm(parameter.getValue());
-                            break;
-                        case PEAK_TO_PEAK:
-                            result = velocityMSecRms * Math.sqrt(2) * 2;
-                            valueBuilder
-                                    .value(result)
-                                    .edIzm(parameter.getValue());
-                            break;
-                    }
-                    velocity = valueBuilder.build();
-                    valueMap.put(velocity.getParameter().name(), velocity);
-                    break;
-            }
+    private Value prepareResult(Map.Entry<Parameter, EdIzm> parameter,
+                                Double rmsValue,
+                                Value.ValueBuilder valueBuilder) {
+        Double result;
+        switch (parameter.getValue()) {
+            case RMS:
+                result = rmsValue;
+                valueBuilder
+                        .value(result)
+                        .edIzm(parameter.getValue());
+                break;
+            case AVG:
+                result = rmsValue / AVG_TO_RMS_KOEFF;
+                valueBuilder
+                        .value(result)
+                        .edIzm(parameter.getValue());
+                break;
+            case PEAK:
+                result = rmsValue * Math.sqrt(2);
+                valueBuilder
+                        .value(result)
+                        .edIzm(parameter.getValue());
+                break;
+            case PEAK_TO_PEAK:
+                result = rmsValue * Math.sqrt(2) * 2;
+                valueBuilder
+                        .value(result)
+                        .edIzm(parameter.getValue());
+                break;
         }
-
-        //Double velocityMmSec = rms / (pi2Freq); // * 1000.0) / Math.sqrt(2.0);
-//        Value velocityMmSec = Value.builder()
-//                .value(rms / (pi2Freq))
-//                .parameter(Parameter.V_mm_sec)
-//                .edIzm(EdIzm.RMS)
-//                .build();
-//        valueMap.put(velocityMmSec.getParameter().name(), velocityMmSec);
-
-        return Result.builder().values(valueMap).build();
+        return valueBuilder.build();
     }
 }
