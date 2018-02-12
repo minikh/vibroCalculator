@@ -5,7 +5,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'application'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.7
 
 mainClassName = 'ru.minikh.vibrocalc.Main'
 
@@ -14,5 +14,7 @@ repositories {
 }
 
 dependencies {
+    compile group: 'org.projectlombok', name: 'lombok-maven-plugin', version: '1.16.20.0'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }

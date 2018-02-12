@@ -14,6 +14,9 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 750, 550));
         primaryStage.show();
+
+//        Value build = Value.builder().build();
+//        build.
     }
 
 
