@@ -24,7 +24,7 @@ public class VibroCalcTest {
         parameters.put(Parameter.V_m_sec, EdIzm.RMS);
         parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
 
-        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculateByAcceleration(acceleration, parameters, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(value.getValue(), 0.159155, 0.0000001);

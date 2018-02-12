@@ -5,34 +5,39 @@ import java.util.Map;
 
 public class VibroCalc {
 
-    private final static Double PI_2 = 2 * Math.PI;
+    private final static Double _2_PI = 2 * Math.PI;
     private final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
 
-    public Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
+    public Result calculateByAcceleration(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
 
-        Double rms = prepareValue(value);
+        Double accelerationRms = prepareValue(value);
 
-        Double pi2Freq = PI_2 * freq;
+        Double _2piFreq = _2_PI * freq;
 
         Map<String, Value> valueMap = new HashMap<>();
 
         for (Map.Entry<Parameter, EdIzm> parameter : parameters.entrySet()) {
+            Double result = null;
             switch (parameter.getKey()) {
                 case V_mm_sec:
-                    Double velocityMmSecRms = rms / pi2Freq;
-                    Value.ValueBuilder valueBuilder = Value.builder()
-                            .parameter(parameter.getKey());
-                    Value velocity = prepareResult(parameter, velocityMmSecRms, valueBuilder);
-                    valueMap.put(velocity.getParameter().name(), velocity);
+                    result = accelerationRms / _2piFreq;
                     break;
-
                 case V_m_sec:
-                    Double velocityMSecRms = rms / pi2Freq / 1000.0;
-                    valueBuilder = Value.builder()
-                            .parameter(parameter.getKey());
-                    velocity = prepareResult(parameter, velocityMSecRms, valueBuilder);
-                    valueMap.put(velocity.getParameter().name(), velocity);
+                    result = accelerationRms / _2piFreq / 1000.0;
                     break;
+                case D_m:
+                    result = accelerationRms / (_2piFreq * 1000.0) / (_2piFreq * 1000.0 * 2);
+                    break;
+                case D_mm:
+                    result = accelerationRms / (_2piFreq * 1000.0) / (_2piFreq * 1000.0 * 2);
+                    break;
+            }
+
+            if (result != null) {
+                Value.ValueBuilder valueBuilder = Value.builder()
+                        .parameter(parameter.getKey());
+                Value resultValue = prepareResult(parameter, result, valueBuilder);
+                valueMap.put(resultValue.getParameter().name(), resultValue);
             }
         }
 
