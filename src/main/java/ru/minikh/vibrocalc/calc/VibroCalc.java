@@ -9,9 +9,13 @@ abstract class VibroCalc {
     final static Double G = 9.80665;
     final static Double KILO = 1000.0;
 
+    Double calc2PiFreq(Double freq) {
+        return _2_PI * freq;
+    }
+
     Value prepareResult(Map.Entry<Parameter, EdIzm> parameter,
-                                Double rmsValue,
-                                Value.ValueBuilder valueBuilder) {
+                        Double rmsValue,
+                        Value.ValueBuilder valueBuilder) {
         Double result;
         switch (parameter.getValue()) {
             case RMS:

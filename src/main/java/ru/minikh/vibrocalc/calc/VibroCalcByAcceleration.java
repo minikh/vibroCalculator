@@ -17,7 +17,7 @@ public class VibroCalcByAcceleration extends VibroCalc {
         Double accelerationRms = prepareValue(value);
         accelerationRms = translationValue(value, accelerationRms);
 
-        Double _2piFreq = _2_PI * freq;
+        Double _2piFreq = calc2PiFreq(freq);
 
         Map<String, Value> valueMap = new HashMap<>();
 
