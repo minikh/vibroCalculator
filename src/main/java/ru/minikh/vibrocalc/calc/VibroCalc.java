@@ -81,6 +81,17 @@ public class VibroCalc {
                 rms = value.getValue() / 2 / Math.sqrt(2);
                 break;
         }
+
+        switch (value.getParameter()) {
+            case A_g:
+                rms *= G;
+                break;
+            case A_mm_sec2:
+                rms /= KILO;
+                break;
+            case A_m_sec2:
+                break;
+        }
         return rms;
     }
 
