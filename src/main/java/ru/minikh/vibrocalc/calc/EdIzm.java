@@ -4,7 +4,8 @@ public enum EdIzm {
     RMS("rms"),
     AVG("awg"),
     PEAK("peak"),
-    PEAK_TO_PEAK("peak-to-peak");
+    PEAK_TO_PEAK("peak-to-peak"),
+    NONE("none");
 
     private String str;
 

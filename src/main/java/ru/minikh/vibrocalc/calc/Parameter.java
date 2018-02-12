@@ -2,7 +2,8 @@ package ru.minikh.vibrocalc.calc;
 
 public enum Parameter {
     A_db,
-    V_db,
+    V_db_m_sec,
+    V_db_mm_sec,
     A_g,
     A_m_sec2,
     A_mm_sec2,

@@ -19,17 +19,32 @@ public class VibroCalc {
         for (Map.Entry<Parameter, EdIzm> parameter : parameters.entrySet()) {
             Double result = null;
             switch (parameter.getKey()) {
+                case A_g:
+                    result = accelerationRms / 9.80665;
+                    break;
+                case A_m_sec2:
+                    result = accelerationRms;
+                    break;
+                case A_mm_sec2:
+                    result = accelerationRms * 1000.0;
+                    break;
                 case V_mm_sec:
-                    result = accelerationRms / _2piFreq;
+                    result = accelerationRms / _2piFreq * 1000.0;
                     break;
                 case V_m_sec:
-                    result = accelerationRms / _2piFreq / 1000.0;
+                    result = accelerationRms / _2piFreq;
                     break;
                 case D_m:
-                    result = accelerationRms / (_2piFreq * 1000.0) / (_2piFreq);
+                    result = accelerationRms / (_2piFreq) / (_2piFreq);
                     break;
                 case D_mm:
-                    result = accelerationRms / (_2piFreq) / (_2piFreq);
+                    result = accelerationRms / (_2piFreq / 1000.0) / (_2piFreq);
+                    break;
+                case A_db:
+                    result = 20.0 * Math.log10(accelerationRms / Math.pow(10, -6)/ 2);
+                    break;
+                case V_db_m_sec:
+                    result = 20.0 * Math.log10(accelerationRms / Math.pow(10, -6));
                     break;
             }
 
@@ -48,6 +63,7 @@ public class VibroCalc {
         Double rms = 0.0;
         switch (value.getEdIzm()) {
             case RMS:
+            case NONE:
                 rms = value.getValue();
                 break;
             case AVG:
@@ -69,6 +85,7 @@ public class VibroCalc {
         Double result;
         switch (parameter.getValue()) {
             case RMS:
+            case NONE:
                 result = rmsValue;
                 valueBuilder
                         .value(result)
