@@ -26,10 +26,10 @@ public class VibroCalc {
                     result = accelerationRms / _2piFreq / 1000.0;
                     break;
                 case D_m:
-                    result = accelerationRms / (_2piFreq * 1000.0) / (_2piFreq * 1000.0 * 2);
+                    result = accelerationRms / (_2piFreq * 1000.0) / (_2piFreq);
                     break;
                 case D_mm:
-                    result = accelerationRms / (_2piFreq * 1000.0) / (_2piFreq * 1000.0 * 2);
+                    result = accelerationRms / (_2piFreq) / (_2piFreq);
                     break;
             }
 
