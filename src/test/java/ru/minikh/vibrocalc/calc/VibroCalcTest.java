@@ -63,6 +63,9 @@ public class VibroCalcTest {
         value = result.getValues().get(Parameter.V_db_m_sec.name());
 //        assertEquals(144.036, value.getValue(), 0.0001);
 
+        value = result.getValues().get(Parameter.V_db_mm_sec.name());
+//        assertEquals(164.036, value.getValue(), 0.0001);
+
 
         for (Map.Entry<String, Value> valueEntry : result.getValues().entrySet()) {
             System.out.println(valueEntry.getKey() + ": \t" + valueEntry.getValue().getValue());
@@ -118,6 +121,9 @@ public class VibroCalcTest {
 
         value = result.getValues().get(Parameter.A_db.name());
         assertEquals(106.19, value.getValue(), 0.01);
+
+        value = result.getValues().get(Parameter.V_db_m_sec.name());
+//        assertEquals(170.057, value.getValue(), 0.0001);
 
         value = result.getValues().get(Parameter.V_db_m_sec.name());
 //        assertEquals(170.057, value.getValue(), 0.0001);
