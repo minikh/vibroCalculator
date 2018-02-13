@@ -8,12 +8,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import org.apache.commons.lang3.StringUtils;
-import ru.minikh.vibrocalc.calc.VibroCalc;
-import ru.minikh.vibrocalc.calc.VibroCalcByAcceleration;
-import ru.minikh.vibrocalc.calc.VibroCalcByDisplacement;
-import ru.minikh.vibrocalc.calc.VibroCalcByVelocity;
+import ru.minikh.vibrocalc.calc.*;
 
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -65,6 +64,12 @@ public class Controller implements Initializable {
         displacementMmSelectEdIzm.getSelectionModel().select(3);
     }
 
+    private Double getFreq() {
+        String text = edFreqHz.getText();
+
+        return isNotNumeric(text) ? Double.parseDouble(text) : 0.0;
+    }
+
     private boolean isNotNumeric(String text) {
         if (StringUtils.isNumeric(text)) return false;
 
@@ -103,6 +108,7 @@ public class Controller implements Initializable {
 
         Double freq = Double.parseDouble(text);
 
+        resetResult();
         edFreqCpm.setText(String.valueOf(freq * 60));
     }
 
@@ -115,6 +121,7 @@ public class Controller implements Initializable {
 
         Double freq = Double.parseDouble(text);
 
+        resetResult();
         edFreqHz.setText(String.valueOf(freq / 60));
     }
 
@@ -125,5 +132,38 @@ public class Controller implements Initializable {
     public void btnResetResult(ActionEvent actionEvent) {
         resetResult();
         resetFreq();
+    }
+
+    public void onEditAdb(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
+
+        String text = edAccelerationG.getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double aDb = Double.parseDouble(text);
+        Value acceleration = Value.builder()
+                .value(aDb)
+                .edIzm(EdIzm.NONE)
+                .parameter(Parameter.A_db)
+                .build();
+
+        Map<Parameter, EdIzm> parameters = new HashMap<>();
+        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
+        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
+
+        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
+        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
+        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
+
+        parameters.put(Parameter.A_db, EdIzm.NONE);
+        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
+        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
+
+        Result result = vibroCalcByAcceleration.calculate(acceleration, parameters, getFreq());
+
+        System.out.println(result);
     }
 }
