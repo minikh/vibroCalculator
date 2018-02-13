@@ -2,12 +2,14 @@ package ru.minikh.vibrocalc.calc;
 
 import java.util.Map;
 
-abstract class VibroCalc {
+public abstract class VibroCalc {
 
     final static Double _2_PI = 2 * Math.PI;
     final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
     final static Double G = 9.80665;
     final static Double KILO = 1000.0;
+
+    public abstract Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq);
 
     Double calc2PiFreq(Double freq) {
         return _2_PI * freq;

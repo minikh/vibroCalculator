@@ -42,42 +42,42 @@
                 <RowConstraints />
             </rowConstraints>
             <children>
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="edAdb" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <Label contentDisplay="CENTER" text="AdB re 1 micro g" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="0" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="edVdbMmSec" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <Label contentDisplay="CENTER" text="ISO" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Label contentDisplay="CENTER" text="VdB re 1x10e-6 мм/сек" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <TextField fx:id="edVdbMSec" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2" />
                 <Label contentDisplay="CENTER" text="US" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <Label contentDisplay="CENTER" text="VdB re 1x10e-8 м/с" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="2" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                <TextField fx:id="edAccelerationG" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="3" />
                 <ComboBox fx:id="accelerationGSelectEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <Label contentDisplay="CENTER" text="Виброускорение, g" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                <TextField fx:id="edAccelerationMsec2" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="4" />
                 <ComboBox fx:id="accelerationMsec2SelectEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
                 <Label contentDisplay="CENTER" text="Виброускорение, м/с2" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="4" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+                <TextField fx:id="edAccelerationMmSec2" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="5" />
                 <ComboBox fx:id="accelerationMmSec2SelectEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
                 <Label contentDisplay="CENTER" text="Виброускорение, мм/с2" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="5" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="6" />
+                <TextField fx:id="edVelocityMsec" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="6" />
                 <ComboBox fx:id="velocityMsecSelectEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                 <Label contentDisplay="CENTER" text="Виброскорость, м/с" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="6" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <TextField fx:id="edVelocityMmSec" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="7" />
                 <ComboBox fx:id="velocityMmSecSelectEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                 <Label contentDisplay="CENTER" text="Виброскорость, мм/с" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="7" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="8" />
+                <TextField fx:id="edDisplacementM" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="8" />
                 <ComboBox fx:id="displacementMSelectEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
                 <Label contentDisplay="CENTER" text="Виброперемещение, м" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="8" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="9" />
+                <TextField fx:id="edDisplacementMm" onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="9" />
                 <ComboBox fx:id="displacementMmSelectEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                 <Label contentDisplay="CENTER" text="Виброперемещение, мм" textAlignment="JUSTIFY" GridPane.columnIndex="2" GridPane.rowIndex="9" />
 
@@ -98,17 +98,17 @@
                 <RowConstraints />
             </rowConstraints>
             <children>
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="edFreqHz" onKeyReleased="#onEditFreqHz" text="0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <Label contentDisplay="CENTER" text="Частота, Гц" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                <TextField onKeyReleased="#onEditA" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                <TextField fx:id="edFreqCpm" onKeyReleased="#onEditFreqCpm" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <Label contentDisplay="CENTER" text="Частота, об/мин" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </GridPane>
-      <Button mnemonicParsing="false" text="Сброс" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <Button mnemonicParsing="false" onAction="#btnResetResult" text="Сброс" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@logo.JPG" />

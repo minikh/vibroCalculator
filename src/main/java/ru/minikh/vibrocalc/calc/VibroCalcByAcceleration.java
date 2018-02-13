@@ -5,6 +5,7 @@ import java.util.Map;
 
 public class VibroCalcByAcceleration extends VibroCalc {
 
+    @Override
     public Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
 
         if (!(value.getParameter() == Parameter.A_g
