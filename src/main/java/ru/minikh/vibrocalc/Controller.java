@@ -22,6 +22,17 @@ public class Controller implements Initializable {
 
     private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
     public Region row1;
+    public Region row2;
+    public Region row3;
+    public Region row4;
+    public Region row5;
+    public Region row6;
+    public Region row7;
+    public Region row8;
+    public Region row9;
+    public Region row10;
+    public Region row20;
+    public Region row21;
 
     private VibroCalc vibroCalcByAcceleration = new VibroCalcByAcceleration();
     private VibroCalc vibroCalcByVelocity = new VibroCalcByVelocity();
@@ -67,7 +78,22 @@ public class Controller implements Initializable {
         displacementMSelectEdIzm.getSelectionModel().select(3);
         displacementMmSelectEdIzm.getSelectionModel().select(3);
 
-        row1.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #8f57dc, #7d2edc);");
+        row1.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #54548b, #8383db);");
+        row2.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #54548b, #8383db);");
+        row3.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #54548b, #8383db);");
+
+        row4.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1a6969, #28a3a3);");
+        row5.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1a6969, #28a3a3);");
+        row6.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1a6969, #28a3a3);");
+
+        row7.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #796030, #cca351);");
+        row8.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #796030, #cca351);");
+
+        row9.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #007900, #00cc00);");
+        row10.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #007900, #00cc00);");
+
+        row20.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #535353, #9a9a9a);");
+        row21.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #535353, #9a9a9a);");
     }
 
     private Double getFreq() {
@@ -80,7 +106,7 @@ public class Controller implements Initializable {
         if (StringUtils.isNumeric(text)) return false;
 
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Вибро калькулятор");
+        alert.setTitle("Виброкалькулятор");
         alert.setHeaderText("Ошибка");
         alert.setContentText("Введите число");
         alert.showAndWait();
