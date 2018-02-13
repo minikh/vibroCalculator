@@ -71,10 +71,10 @@ public class VibroCalcByVelocity extends VibroCalc {
     private Double translationValue(Value value, Double rms) {
         switch (value.getParameter()) {
             case V_db_m_sec:
-                rms *= G;
+                rms = Math.pow(10, rms / 20.0) * KILO * Math.pow(10, -8);
                 break;
             case V_db_mm_sec:
-                rms *= G;
+                rms = Math.pow(10, rms / 20.0) * Math.pow(10, -6);
                 break;
             case V_m_sec:
                 rms *= KILO;
