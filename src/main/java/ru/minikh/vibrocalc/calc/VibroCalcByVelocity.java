@@ -77,7 +77,7 @@ public class VibroCalcByVelocity extends VibroCalc {
                 rms *= G;
                 break;
             case V_m_sec:
-                rms /= KILO;
+                rms *= KILO;
                 break;
             case V_mm_sec:
                 break;

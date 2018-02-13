@@ -1,5 +1,6 @@
 package ru.minikh.vibrocalc;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -62,6 +63,13 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Platform.runLater(new Runnable() {
+            @Override
+            public void run() {
+                edFreqHz.requestFocus();
+            }
+        });
+
         accelerationGSelectEdIzm.getItems().addAll(ED_IZM);
         accelerationMsec2SelectEdIzm.getItems().addAll(ED_IZM);
         accelerationMmSec2SelectEdIzm.getItems().addAll(ED_IZM);
@@ -173,9 +181,9 @@ public class Controller implements Initializable {
 
         if (isNotNumeric(text)) return;
 
-        Double aDb = Double.parseDouble(text);
+        Double value = Double.parseDouble(text);
         Value acceleration = Value.builder()
-                .value(aDb)
+                .value(value)
                 .edIzm(EdIzm.NONE)
                 .parameter(Parameter.A_db)
                 .build();
@@ -192,48 +200,168 @@ public class Controller implements Initializable {
 
         if (isNotNumeric(text)) return;
 
-        Double aDb = Double.parseDouble(text);
-        Value acceleration = Value.builder()
-                .value(aDb)
+        Double value = Double.parseDouble(text);
+        Value velocity = Value.builder()
+                .value(value)
                 .edIzm(EdIzm.NONE)
                 .parameter(Parameter.V_db_mm_sec)
                 .build();
 
-        Result result = vibroCalcByVelocity.calculate(acceleration, getFreq());
+        Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
+
+        applyResult(result, velocity);
+    }
+
+    public void onEditVdbMsec(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
+
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double value = Double.parseDouble(text);
+        Value velocity = Value.builder()
+                .value(value)
+                .edIzm(EdIzm.NONE)
+                .parameter(Parameter.V_db_m_sec)
+                .build();
+
+        Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
+
+        applyResult(result, velocity);
+    }
+
+    public void onEditAccelerationG(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
+
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double value = Double.parseDouble(text);
+        Value acceleration = Value.builder()
+                .value(value)
+                .edIzm(EdIzm.PEAK_TO_PEAK)
+                .parameter(Parameter.A_g)
+                .build();
+
+        Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
     }
 
-    public void onEditVdbMsec(KeyEvent keyEvent) {
-
-    }
-
-    public void onEditAccelerationG(KeyEvent keyEvent) {
-
-    }
-
     public void onEditAccelerationMsec2(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double value = Double.parseDouble(text);
+        Value acceleration = Value.builder()
+                .value(value)
+                .edIzm(EdIzm.RMS)
+                .parameter(Parameter.A_m_sec2)
+                .build();
+
+        Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
+
+        applyResult(result, acceleration);
     }
 
     public void onEditAccelerationMmSec2(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double value = Double.parseDouble(text);
+        Value acceleration = Value.builder()
+                .value(value)
+                .edIzm(EdIzm.RMS)
+                .parameter(Parameter.A_mm_sec2)
+                .build();
+
+        Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
+
+        applyResult(result, acceleration);
     }
 
     public void onEditVelocityMsec(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double value = Double.parseDouble(text);
+        Value velocity = Value.builder()
+                .value(value)
+                .edIzm(EdIzm.RMS)
+                .parameter(Parameter.V_m_sec)
+                .build();
+
+        Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
+
+        applyResult(result, velocity);
     }
 
     public void onEditVelocityMmSec(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double value = Double.parseDouble(text);
+        Value velocity = Value.builder()
+                .value(value)
+                .edIzm(EdIzm.RMS)
+                .parameter(Parameter.V_mm_sec)
+                .build();
+
+        Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
+
+        applyResult(result, velocity);
     }
 
     public void onEditDisplacementM(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double value = Double.parseDouble(text);
+        Value displacement = Value.builder()
+                .value(value)
+                .edIzm(EdIzm.PEAK_TO_PEAK)
+                .parameter(Parameter.D_m)
+                .build();
+
+        Result result = vibroCalcByDisplacement.calculate(displacement, getFreq());
+
+        applyResult(result, displacement);
     }
 
     public void onEditDisplacementMm(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double value = Double.parseDouble(text);
+        Value displacement = Value.builder()
+                .value(value)
+                .edIzm(EdIzm.PEAK_TO_PEAK)
+                .parameter(Parameter.D_mm)
+                .build();
+
+        Result result = vibroCalcByDisplacement.calculate(displacement, getFreq());
+
+        applyResult(result, displacement);
     }
 
     private void applyResult(Result result, Value value) {

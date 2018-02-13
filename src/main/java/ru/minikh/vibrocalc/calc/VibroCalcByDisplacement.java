@@ -71,7 +71,7 @@ public class VibroCalcByDisplacement extends VibroCalc {
             case D_m:
                 break;
             case D_mm:
-                rms *= KILO;
+                rms /= KILO;
                 break;
         }
 

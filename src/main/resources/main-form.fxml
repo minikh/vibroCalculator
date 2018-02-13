@@ -6,8 +6,10 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -151,9 +153,10 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="298.0" minHeight="26.0" prefHeight="40.0" />
-                <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="120.0" />
-                <RowConstraints maxHeight="211.0" minHeight="7.0" prefHeight="110.0" />
+                <RowConstraints maxHeight="298.0" minHeight="26.0" prefHeight="43.0" />
+                <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="41.0" />
+                <RowConstraints maxHeight="211.0" minHeight="7.0" prefHeight="37.0" />
+                <RowConstraints maxHeight="160.0" minHeight="8.0" prefHeight="157.0" />
                 <RowConstraints maxHeight="106.0" minHeight="8.0" prefHeight="80.0" />
             </rowConstraints>
             <children>
@@ -170,8 +173,8 @@
                   <Insets left="5.0" />
                </GridPane.margin></TextField>
                 <Label contentDisplay="CENTER" text="Частота, об/мин" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="44.0" prefWidth="95.0" text="Сброс" GridPane.rowIndex="2" />
-                <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="44.0" prefWidth="95.0" text="Сброс" GridPane.rowIndex="4" />
+                <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                     <image>
                         <Image url="@logo.JPG" />
                     </image>
@@ -179,6 +182,11 @@
                         <Cursor fx:constant="HAND" />
                     </cursor>
                 </ImageView>
+            <RadioButton mnemonicParsing="false" selected="true" text="English" GridPane.rowIndex="2">
+               <toggleGroup>
+                  <ToggleGroup fx:id="rbGroup" />
+               </toggleGroup></RadioButton>
+            <RadioButton mnemonicParsing="false" selected="true" text="Metric" toggleGroup="$rbGroup" GridPane.rowIndex="3" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
