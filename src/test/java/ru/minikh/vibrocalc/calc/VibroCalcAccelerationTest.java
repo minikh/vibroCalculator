@@ -61,10 +61,10 @@ public class VibroCalcAccelerationTest {
         assertEquals(100.17, value.getValue(), 0.001);
 
         value = result.getValues().get(Parameter.V_db_m_sec.name());
-//        assertEquals(144.036, value.getValue(), 0.0001);
+        assertEquals(144.036, value.getValue(), 0.001);
 
         value = result.getValues().get(Parameter.V_db_mm_sec.name());
-//        assertEquals(164.036, value.getValue(), 0.0001);
+        assertEquals(164.036, value.getValue(), 0.001);
 
 
         for (Map.Entry<String, Value> valueEntry : result.getValues().entrySet()) {
@@ -123,10 +123,10 @@ public class VibroCalcAccelerationTest {
         assertEquals(106.19, value.getValue(), 0.01);
 
         value = result.getValues().get(Parameter.V_db_m_sec.name());
-//        assertEquals(170.057, value.getValue(), 0.0001);
+        assertEquals(150.057, value.getValue(), 0.0001);
 
-        value = result.getValues().get(Parameter.V_db_m_sec.name());
-//        assertEquals(170.057, value.getValue(), 0.0001);
+        value = result.getValues().get(Parameter.V_db_mm_sec.name());
+        assertEquals(170.057, value.getValue(), 0.0001);
 
 
         for (Map.Entry<String, Value> valueEntry : result.getValues().entrySet()) {
@@ -185,10 +185,10 @@ public class VibroCalcAccelerationTest {
         assertEquals(40.1695, value.getValue(), 0.0001);
 
         value = result.getValues().get(Parameter.V_db_m_sec.name());
-//        assertEquals(84.0364, value.getValue(), 0.0001);
+        assertEquals(84.0364, value.getValue(), 0.0001);
 
-        value = result.getValues().get(Parameter.V_db_m_sec.name());
-//        assertEquals(104.036, value.getValue(), 0.0001);
+        value = result.getValues().get(Parameter.V_db_mm_sec.name());
+        assertEquals(104.036, value.getValue(), 0.001);
 
 
         for (Map.Entry<String, Value> valueEntry : result.getValues().entrySet()) {
@@ -247,10 +247,10 @@ public class VibroCalcAccelerationTest {
         assertEquals(110.969, value.getValue(), 1.0e-003);
 
         value = result.getValues().get(Parameter.V_db_m_sec.name());
-//        assertEquals(154.836, value.getValue(), 0.0001);
+        assertEquals(154.836, value.getValue(), 0.0001);
 
-        value = result.getValues().get(Parameter.V_db_m_sec.name());
-//        assertEquals(174.836, value.getValue(), 0.0001);
+        value = result.getValues().get(Parameter.V_db_mm_sec.name());
+        assertEquals(174.836, value.getValue(), 0.0001);
 
 
         for (Map.Entry<String, Value> valueEntry : result.getValues().entrySet()) {
