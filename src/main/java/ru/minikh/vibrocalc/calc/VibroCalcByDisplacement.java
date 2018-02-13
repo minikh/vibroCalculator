@@ -20,7 +20,7 @@ public class VibroCalcByDisplacement extends VibroCalc {
 
         Map<String, Value> valueMap = new HashMap<>();
 
-        for (Map.Entry<Parameter, EdIzm> parameter : parameters.entrySet()) {
+        for (Map.Entry<Parameter, EdIzm> parameter : getParameters().entrySet()) {
             Double result = null;
             switch (parameter.getKey()) {
                 case A_g:
@@ -54,6 +54,8 @@ public class VibroCalcByDisplacement extends VibroCalc {
                     result = 20.0 * Math.log10(displacementRms * _2piFreq * KILO / Math.pow(10, -6));
                     break;
             }
+
+            setParameters(null);
 
             if (result != null) {
                 Value.ValueBuilder valueBuilder = Value.builder()

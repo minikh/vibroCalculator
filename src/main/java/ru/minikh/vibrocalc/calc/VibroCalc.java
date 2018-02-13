@@ -1,6 +1,5 @@
 package ru.minikh.vibrocalc.calc;
 
-import java.util.HashMap;
 import java.util.Map;
 
 public abstract class VibroCalc {
@@ -10,21 +9,30 @@ public abstract class VibroCalc {
     final static Double G = 9.80665;
     final static Double KILO = 1000.0;
 
-    final static Map<Parameter, EdIzm> parameters = new HashMap<>();
+    private Map<Parameter, EdIzm> parameters;
 
     public VibroCalc() {
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
-        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
+//        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
+//        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
+//        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
+//
+//        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
+//        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
+//        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
+//        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
+//
+//        parameters.put(Parameter.A_db, EdIzm.NONE);
+//        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
+//        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
+    }
 
-        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
-        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
-        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
+    public void setParameters(Map<Parameter, EdIzm> parameters) {
+        this.parameters = parameters;
+    }
 
-        parameters.put(Parameter.A_db, EdIzm.NONE);
-        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
-        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
+    public Map<Parameter, EdIzm> getParameters() {
+        if (parameters == null) throw new RuntimeException("Не заданы параметры");
+        return parameters;
     }
 
     public abstract Result calculate(Value value, Double freq);

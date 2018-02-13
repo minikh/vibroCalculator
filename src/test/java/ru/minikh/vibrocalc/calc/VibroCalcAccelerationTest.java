@@ -1,13 +1,33 @@
 package ru.minikh.vibrocalc.calc;
 
+import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 
 
 public class VibroCalcAccelerationTest {
+
+    private Map<Parameter, EdIzm> parameters = new HashMap<>();
+
+    @Before
+    public void setUp() throws Exception {
+        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
+        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
+
+        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
+        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
+        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
+
+        parameters.put(Parameter.A_db, EdIzm.NONE);
+        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
+        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
+    }
 
     @Test
     public void testCalc1A() {
@@ -18,6 +38,7 @@ public class VibroCalcAccelerationTest {
                 .build();
 
         VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
+        vibroCalc.setParameters(parameters);
 
         Result result = vibroCalc.calculate(acceleration, 1.0);
 
@@ -66,6 +87,7 @@ public class VibroCalcAccelerationTest {
                 .build();
 
         VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
+        vibroCalc.setParameters(parameters);
 
         Result result = vibroCalc.calculate(acceleration, 1.0);
 
@@ -114,6 +136,7 @@ public class VibroCalcAccelerationTest {
                 .build();
 
         VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
+        vibroCalc.setParameters(parameters);
 
         Result result = vibroCalc.calculate(acceleration, 1.0);
 
@@ -162,6 +185,7 @@ public class VibroCalcAccelerationTest {
                 .build();
 
         VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
+        vibroCalc.setParameters(parameters);
 
         Result result = vibroCalc.calculate(acceleration, 1.0);
 
@@ -210,6 +234,7 @@ public class VibroCalcAccelerationTest {
                 .build();
 
         VibroCalcByAcceleration vibroCalc = new VibroCalcByAcceleration();
+        vibroCalc.setParameters(parameters);
 
         Result result = vibroCalc.calculate(acceleration, 1.0);
 

@@ -6,7 +6,7 @@ import java.util.Map;
 public class VibroCalcByAcceleration extends VibroCalc {
 
     @Override
-    public Result calculate(Value value,Double freq) {
+    public Result calculate(Value value, Double freq) {
 
         if (!(value.getParameter() == Parameter.A_g
                 || value.getParameter() == Parameter.A_db
@@ -22,7 +22,7 @@ public class VibroCalcByAcceleration extends VibroCalc {
 
         Map<String, Value> valueMap = new HashMap<>();
 
-        for (Map.Entry<Parameter, EdIzm> parameter : parameters.entrySet()) {
+        for (Map.Entry<Parameter, EdIzm> parameter : getParameters().entrySet()) {
             Double result = null;
             switch (parameter.getKey()) {
                 case A_g:
@@ -56,6 +56,8 @@ public class VibroCalcByAcceleration extends VibroCalc {
                     result = 20.0 * Math.log10(accelerationRms * KILO / _2piFreq / Math.pow(10, -6));
                     break;
             }
+
+            setParameters(null);
 
             if (result != null) {
                 Value.ValueBuilder valueBuilder = Value.builder()

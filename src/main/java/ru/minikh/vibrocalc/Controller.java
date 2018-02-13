@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -188,6 +190,7 @@ public class Controller implements Initializable {
                 .parameter(Parameter.A_db)
                 .build();
 
+        vibroCalcByAcceleration.setParameters(getSelectedParameters());
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
@@ -207,6 +210,7 @@ public class Controller implements Initializable {
                 .parameter(Parameter.V_db_mm_sec)
                 .build();
 
+        vibroCalcByVelocity.setParameters(getSelectedParameters());
         Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
 
         applyResult(result, velocity);
@@ -226,6 +230,7 @@ public class Controller implements Initializable {
                 .parameter(Parameter.V_db_m_sec)
                 .build();
 
+        vibroCalcByVelocity.setParameters(getSelectedParameters());
         Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
 
         applyResult(result, velocity);
@@ -241,10 +246,11 @@ public class Controller implements Initializable {
         Double value = Double.parseDouble(text);
         Value acceleration = Value.builder()
                 .value(value)
-                .edIzm(EdIzm.PEAK_TO_PEAK)
+                .edIzm(EdIzm.getEdIzm((String) accelerationGSelectEdIzm.getSelectionModel().getSelectedItem()))
                 .parameter(Parameter.A_g)
                 .build();
 
+        vibroCalcByAcceleration.setParameters(getSelectedParameters());
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
@@ -260,10 +266,11 @@ public class Controller implements Initializable {
         Double value = Double.parseDouble(text);
         Value acceleration = Value.builder()
                 .value(value)
-                .edIzm(EdIzm.RMS)
+                .edIzm(EdIzm.getEdIzm((String) accelerationMsec2SelectEdIzm.getSelectionModel().getSelectedItem()))
                 .parameter(Parameter.A_m_sec2)
                 .build();
 
+        vibroCalcByAcceleration.setParameters(getSelectedParameters());
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
@@ -279,10 +286,11 @@ public class Controller implements Initializable {
         Double value = Double.parseDouble(text);
         Value acceleration = Value.builder()
                 .value(value)
-                .edIzm(EdIzm.RMS)
+                .edIzm(EdIzm.getEdIzm((String) accelerationMmSec2SelectEdIzm.getSelectionModel().getSelectedItem()))
                 .parameter(Parameter.A_mm_sec2)
                 .build();
 
+        vibroCalcByAcceleration.setParameters(getSelectedParameters());
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
@@ -298,10 +306,11 @@ public class Controller implements Initializable {
         Double value = Double.parseDouble(text);
         Value velocity = Value.builder()
                 .value(value)
-                .edIzm(EdIzm.RMS)
+                .edIzm(EdIzm.getEdIzm((String) velocityMsecSelectEdIzm.getSelectionModel().getSelectedItem()))
                 .parameter(Parameter.V_m_sec)
                 .build();
 
+        vibroCalcByVelocity.setParameters(getSelectedParameters());
         Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
 
         applyResult(result, velocity);
@@ -317,10 +326,11 @@ public class Controller implements Initializable {
         Double value = Double.parseDouble(text);
         Value velocity = Value.builder()
                 .value(value)
-                .edIzm(EdIzm.RMS)
+                .edIzm(EdIzm.getEdIzm((String) velocityMmSecSelectEdIzm.getSelectionModel().getSelectedItem()))
                 .parameter(Parameter.V_mm_sec)
                 .build();
 
+        vibroCalcByVelocity.setParameters(getSelectedParameters());
         Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
 
         applyResult(result, velocity);
@@ -336,10 +346,11 @@ public class Controller implements Initializable {
         Double value = Double.parseDouble(text);
         Value displacement = Value.builder()
                 .value(value)
-                .edIzm(EdIzm.PEAK_TO_PEAK)
+                .edIzm(EdIzm.getEdIzm((String) displacementMSelectEdIzm.getSelectionModel().getSelectedItem()))
                 .parameter(Parameter.D_m)
                 .build();
 
+        vibroCalcByDisplacement.setParameters(getSelectedParameters());
         Result result = vibroCalcByDisplacement.calculate(displacement, getFreq());
 
         applyResult(result, displacement);
@@ -355,10 +366,11 @@ public class Controller implements Initializable {
         Double value = Double.parseDouble(text);
         Value displacement = Value.builder()
                 .value(value)
-                .edIzm(EdIzm.PEAK_TO_PEAK)
+                .edIzm(EdIzm.getEdIzm((String) displacementMmSelectEdIzm.getSelectionModel().getSelectedItem()))
                 .parameter(Parameter.D_mm)
                 .build();
 
+        vibroCalcByDisplacement.setParameters(getSelectedParameters());
         Result result = vibroCalcByDisplacement.calculate(displacement, getFreq());
 
         applyResult(result, displacement);
@@ -407,11 +419,30 @@ public class Controller implements Initializable {
     }
 
     public void openUrl(MouseEvent mouseEvent) {
-//        getHostServices().showDocument(url);
         try {
             java.awt.Desktop.getDesktop().browse(new URI("www.vibrtest.ru"));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
+    }
+
+    private Map<Parameter, EdIzm> getSelectedParameters() {
+        Map<Parameter, EdIzm> parameters = new HashMap<>();
+
+        parameters.put(Parameter.A_g, EdIzm.getEdIzm((String) accelerationGSelectEdIzm.getSelectionModel().getSelectedItem()));
+        parameters.put(Parameter.A_m_sec2, EdIzm.getEdIzm((String) accelerationMsec2SelectEdIzm.getSelectionModel().getSelectedItem()));
+        parameters.put(Parameter.A_mm_sec2, EdIzm.getEdIzm((String) accelerationMmSec2SelectEdIzm.getSelectionModel().getSelectedItem()));
+
+        parameters.put(Parameter.V_m_sec, EdIzm.getEdIzm((String) velocityMsecSelectEdIzm.getSelectionModel().getSelectedItem()));
+        parameters.put(Parameter.V_mm_sec, EdIzm.getEdIzm((String) velocityMmSecSelectEdIzm.getSelectionModel().getSelectedItem()));
+
+        parameters.put(Parameter.D_m, EdIzm.getEdIzm((String) displacementMSelectEdIzm.getSelectionModel().getSelectedItem()));
+        parameters.put(Parameter.D_mm, EdIzm.getEdIzm((String) displacementMmSelectEdIzm.getSelectionModel().getSelectedItem()));
+
+        parameters.put(Parameter.A_db, EdIzm.NONE);
+        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
+        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
+
+        return parameters;
     }
 }
