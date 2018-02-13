@@ -10,13 +10,11 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/main-form.fxml"));
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(root, 750, 550));
         primaryStage.show();
 
-//        Value build = Value.builder().build();
-//        build.
     }
 
 
