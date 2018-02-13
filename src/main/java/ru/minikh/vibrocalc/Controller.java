@@ -135,7 +135,7 @@ public class Controller implements Initializable {
     public void onEditAdb(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
 
-        String text = edAdb.getText();
+        String text = ((TextField) keyEvent.getSource()).getText();
 
         if (isNotNumeric(text)) return;
 
@@ -152,7 +152,22 @@ public class Controller implements Initializable {
     }
 
     public void onEditVdbMmSec(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = ((TextField) keyEvent.getSource()).getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double aDb = Double.parseDouble(text);
+        Value acceleration = Value.builder()
+                .value(aDb)
+                .edIzm(EdIzm.NONE)
+                .parameter(Parameter.V_db_mm_sec)
+                .build();
+
+        Result result = vibroCalcByVelocity.calculate(acceleration, getFreq());
+
+        applyResult(result, acceleration);
     }
 
     public void onEditVdbMsec(KeyEvent keyEvent) {
