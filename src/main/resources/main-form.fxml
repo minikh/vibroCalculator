@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="550.0" prefWidth="750.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.minikh.vibrocalc.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="550.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.minikh.vibrocalc.Controller">
     <columnConstraints>
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="119.0" />
         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="73.0" />
@@ -19,8 +24,10 @@
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="394.0" minHeight="10.0" prefHeight="370.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="394.0" minHeight="10.0" prefHeight="374.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="27.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
         <GridPane alignment="CENTER" hgap="5.0" prefHeight="294.0" prefWidth="662.0" vgap="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -86,36 +93,60 @@
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </GridPane>
-        <GridPane alignment="CENTER" hgap="5.0" prefHeight="294.0" prefWidth="662.0" vgap="5.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="2">
+        <GridPane alignment="CENTER" hgap="5.0" prefHeight="156.0" prefWidth="310.0" vgap="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="190.0" />
-            <ColumnConstraints />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="150.0" minWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="620.0" minWidth="113.0" prefWidth="113.0" />
+                <ColumnConstraints maxWidth="77.0" minWidth="6.0" prefWidth="77.0" />
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                <RowConstraints />
-                <RowConstraints />
+                <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="298.0" minHeight="26.0" prefHeight="38.0" />
+                <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="77.0" />
+                <RowConstraints maxHeight="211.0" minHeight="7.0" prefHeight="110.0" />
+                <RowConstraints maxHeight="106.0" minHeight="8.0" prefHeight="80.0" />
             </rowConstraints>
             <children>
-                <TextField fx:id="edFreqHz" onKeyReleased="#onEditFreqHz" text="0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="edFreqHz" onKeyReleased="#onEditFreqHz" prefHeight="31.0" prefWidth="95.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <Label contentDisplay="CENTER" text="Частота, Гц" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
                 <TextField fx:id="edFreqCpm" onKeyReleased="#onEditFreqCpm" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1" />
                 <Label contentDisplay="CENTER" text="Частота, об/мин" textAlignment="JUSTIFY" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="44.0" prefWidth="95.0" text="Сброс" GridPane.rowIndex="2" />
+                <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+                    <image>
+                        <Image url="@logo.JPG" />
+                    </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+                </ImageView>
             </children>
             <padding>
                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
             </padding>
         </GridPane>
-      <Button mnemonicParsing="false" onAction="#btnResetResult" text="Сброс" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2">
-         <image>
-            <Image url="@logo.JPG" />
-         </image></ImageView>
-      <TextField text=" 9.80665" GridPane.rowIndex="1" />
+        <Label text="ВИБРОКАЛЬКУЛЯТОР" GridPane.columnSpan="3">
+            <font>
+                <Font name="System Bold" size="60.0" />
+            </font>
+        </Label>
+        <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+      <GridPane prefHeight="18.0" prefWidth="361.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="508.0" minWidth="10.0" prefWidth="357.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="171.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Hyperlink alignment="CENTER" onMouseClicked="#openUrl" prefHeight="29.0" prefWidth="133.0" text="www.vibrtest.ru" textAlignment="RIGHT" GridPane.columnIndex="1" />
+         </children>
+      </GridPane>
+      <Region fx:id="row1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
     </children>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
+    <padding>
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+    </padding>
 </GridPane>

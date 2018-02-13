@@ -7,15 +7,21 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 import org.apache.commons.lang3.StringUtils;
 import ru.minikh.vibrocalc.calc.*;
 
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
     private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
+    public Region row1;
 
     private VibroCalc vibroCalcByAcceleration = new VibroCalcByAcceleration();
     private VibroCalc vibroCalcByVelocity = new VibroCalcByVelocity();
@@ -60,6 +66,8 @@ public class Controller implements Initializable {
         velocityMmSecSelectEdIzm.getSelectionModel().select(0);
         displacementMSelectEdIzm.getSelectionModel().select(3);
         displacementMmSelectEdIzm.getSelectionModel().select(3);
+
+        row1.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #8f57dc, #7d2edc);");
     }
 
     private Double getFreq() {
@@ -241,6 +249,15 @@ public class Controller implements Initializable {
 
         if (value.getParameter() != Parameter.D_mm) {
             edDisplacementMm.setText(String.valueOf(result.getValues().get(Parameter.D_mm.name()).getValue()));
+        }
+    }
+
+    public void openUrl(MouseEvent mouseEvent) {
+//        getHostServices().showDocument(url);
+        try {
+            java.awt.Desktop.getDesktop().browse(new URI("www.vibrtest.ru"));
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
         }
     }
 }
