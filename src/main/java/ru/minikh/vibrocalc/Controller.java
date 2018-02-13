@@ -67,7 +67,7 @@ public class Controller implements Initializable {
     private Double getFreq() {
         String text = edFreqHz.getText();
 
-        return isNotNumeric(text) ? Double.parseDouble(text) : 0.0;
+        return isNotNumeric(text) ? 0.0 : Double.parseDouble(text);
     }
 
     private boolean isNotNumeric(String text) {
@@ -137,7 +137,7 @@ public class Controller implements Initializable {
     public void onEditAdb(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
 
-        String text = edAccelerationG.getText();
+        String text = edAdb.getText();
 
         if (isNotNumeric(text)) return;
 
@@ -164,6 +164,19 @@ public class Controller implements Initializable {
 
         Result result = vibroCalcByAcceleration.calculate(acceleration, parameters, getFreq());
 
-        System.out.println(result);
+        applyResult(result, acceleration);
+    }
+
+    private void applyResult(Result result, Value acceleration) {
+        edAdb.setText(String.valueOf(result.getValues().get(Parameter.A_db.name()).getValue()));
+        edVdbMmSec.setText(String.valueOf(result.getValues().get(Parameter.V_db_mm_sec.name()).getValue()));
+        edVdbMSec.setText(String.valueOf(result.getValues().get(Parameter.V_db_m_sec.name()).getValue()));
+        edAccelerationG.setText(String.valueOf(result.getValues().get(Parameter.A_g.name()).getValue()));
+        edAccelerationMsec2.setText(String.valueOf(result.getValues().get(Parameter.A_m_sec2.name()).getValue()));
+        edAccelerationMmSec2.setText(String.valueOf(result.getValues().get(Parameter.A_mm_sec2.name()).getValue()));
+        edVelocityMsec.setText(String.valueOf(result.getValues().get(Parameter.V_m_sec.name()).getValue()));
+        edVelocityMmSec.setText(String.valueOf(result.getValues().get(Parameter.V_mm_sec.name()).getValue()));
+        edDisplacementM.setText(String.valueOf(result.getValues().get(Parameter.D_m.name()).getValue()));
+        edDisplacementMm.setText(String.valueOf(result.getValues().get(Parameter.D_mm.name()).getValue()));
     }
 }

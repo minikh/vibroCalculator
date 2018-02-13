@@ -13,9 +13,9 @@
 
 <GridPane alignment="center" hgap="10" prefHeight="550.0" prefWidth="750.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.minikh.vibrocalc.Controller">
     <columnConstraints>
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="227.0" />
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="80.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="423.0" minWidth="400.0" prefWidth="423.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="119.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="73.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.0" minWidth="400.0" prefWidth="528.0" />
     </columnConstraints>
     <rowConstraints>
         <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="73.0" vgrow="SOMETIMES" />
@@ -25,9 +25,9 @@
     <children>
         <GridPane alignment="CENTER" hgap="5.0" prefHeight="294.0" prefWidth="662.0" vgap="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="106.0" prefWidth="106.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="104.0" minWidth="10.0" prefWidth="104.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="190.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="159.0" prefWidth="189.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="95.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="190.0" prefWidth="190.0" />
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
@@ -109,7 +109,7 @@
             </padding>
         </GridPane>
       <Button mnemonicParsing="false" onAction="#btnResetResult" text="Сброс" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2">
          <image>
             <Image url="@logo.JPG" />
          </image></ImageView>
