@@ -167,6 +167,42 @@ public class Controller implements Initializable {
         applyResult(result, acceleration);
     }
 
+    public void onEditVdbMmSec(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditVdbMsec(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditAccelerationG(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditAccelerationMsec2(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditAccelerationMmSec2(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditVelocityMsec(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditVelocityMmSec(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditDisplacementM(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditDisplacementMm(KeyEvent keyEvent) {
+
+    }
+
     private void applyResult(Result result, Value value) {
         if (value.getParameter() != Parameter.A_db) {
             edAdb.setText(String.valueOf(result.getValues().get(Parameter.A_db.name()).getValue()));

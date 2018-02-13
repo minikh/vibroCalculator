@@ -1,5 +1,6 @@
 package ru.minikh.vibrocalc.calc;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public abstract class VibroCalc {
@@ -9,7 +10,24 @@ public abstract class VibroCalc {
     final static Double G = 9.80665;
     final static Double KILO = 1000.0;
 
-    public abstract Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq);
+    final static Map<Parameter, EdIzm> parameters = new HashMap<>();
+
+    public VibroCalc() {
+        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
+        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
+
+        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
+        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
+        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
+
+        parameters.put(Parameter.A_db, EdIzm.NONE);
+        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
+        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
+    }
+
+    public abstract Result calculate(Value value, Double freq);
 
     Double calc2PiFreq(Double freq) {
         return _2_PI * freq;

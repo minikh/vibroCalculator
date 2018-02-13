@@ -6,7 +6,7 @@ import java.util.Map;
 public class VibroCalcByDisplacement extends VibroCalc {
 
     @Override
-    public Result calculate(Value value, Map<Parameter, EdIzm> parameters, Double freq) {
+    public Result calculate(Value value, Double freq) {
 
         if (!(value.getParameter() == Parameter.D_mm
                 || value.getParameter() == Parameter.D_m)) {
