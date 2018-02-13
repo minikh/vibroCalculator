@@ -2,7 +2,6 @@ package ru.minikh.vibrocalc.calc;
 
 import org.junit.Test;
 
-import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
@@ -20,21 +19,7 @@ public class VibroCalcDisplacementTest {
 
         VibroCalcByDisplacement vibroCalc = new VibroCalcByDisplacement();
 
-        Map<Parameter, EdIzm> parameters = new HashMap<>();
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
-        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
-
-        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
-        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
-        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
-
-        parameters.put(Parameter.A_db, EdIzm.NONE);
-        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
-        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
-
-        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculate(acceleration, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(2221.44, value.getValue(), 1.0e-002);
@@ -82,21 +67,7 @@ public class VibroCalcDisplacementTest {
 
         VibroCalcByDisplacement vibroCalc = new VibroCalcByDisplacement();
 
-        Map<Parameter, EdIzm> parameters = new HashMap<>();
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
-        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
-
-        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
-        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
-        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
-
-        parameters.put(Parameter.A_db, EdIzm.NONE);
-        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
-        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
-
-        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculate(acceleration, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(318.31, value.getValue(), 0.001);
@@ -144,21 +115,7 @@ public class VibroCalcDisplacementTest {
 
         VibroCalcByDisplacement vibroCalc = new VibroCalcByDisplacement();
 
-        Map<Parameter, EdIzm> parameters = new HashMap<>();
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
-        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
-
-        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
-        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
-        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
-
-        parameters.put(Parameter.A_db, EdIzm.NONE);
-        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
-        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
-
-        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculate(acceleration, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(0.159155, value.getValue(), 0.000001);
@@ -206,21 +163,7 @@ public class VibroCalcDisplacementTest {
 
         VibroCalcByDisplacement vibroCalc = new VibroCalcByDisplacement();
 
-        Map<Parameter, EdIzm> parameters = new HashMap<>();
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
-        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
-
-        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
-        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
-        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
-
-        parameters.put(Parameter.A_db, EdIzm.NONE);
-        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
-        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
-
-        Result result = vibroCalc.calculate(acceleration, parameters, 1.0);
+        Result result = vibroCalc.calculate(acceleration, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
         assertEquals(551.821, value.getValue(), 0.01);
@@ -268,8 +211,6 @@ public class VibroCalcDisplacementTest {
 
         VibroCalcByDisplacement vibroCalc = new VibroCalcByDisplacement();
 
-        Map<Parameter, EdIzm> parameters = new HashMap<>();
-
-        vibroCalc.calculate(acceleration, parameters, 1.0);
+        vibroCalc.calculate(acceleration, 1.0);
     }
 }

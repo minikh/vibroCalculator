@@ -11,8 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import ru.minikh.vibrocalc.calc.*;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -148,21 +146,7 @@ public class Controller implements Initializable {
                 .parameter(Parameter.A_db)
                 .build();
 
-        Map<Parameter, EdIzm> parameters = new HashMap<>();
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
-        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
-
-        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
-        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
-        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
-        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
-
-        parameters.put(Parameter.A_db, EdIzm.NONE);
-        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
-        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
-
-        Result result = vibroCalcByAcceleration.calculate(acceleration, parameters, getFreq());
+        Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
     }
