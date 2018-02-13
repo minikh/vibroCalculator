@@ -167,16 +167,45 @@ public class Controller implements Initializable {
         applyResult(result, acceleration);
     }
 
-    private void applyResult(Result result, Value acceleration) {
-        edAdb.setText(String.valueOf(result.getValues().get(Parameter.A_db.name()).getValue()));
-        edVdbMmSec.setText(String.valueOf(result.getValues().get(Parameter.V_db_mm_sec.name()).getValue()));
-        edVdbMSec.setText(String.valueOf(result.getValues().get(Parameter.V_db_m_sec.name()).getValue()));
-        edAccelerationG.setText(String.valueOf(result.getValues().get(Parameter.A_g.name()).getValue()));
-        edAccelerationMsec2.setText(String.valueOf(result.getValues().get(Parameter.A_m_sec2.name()).getValue()));
-        edAccelerationMmSec2.setText(String.valueOf(result.getValues().get(Parameter.A_mm_sec2.name()).getValue()));
-        edVelocityMsec.setText(String.valueOf(result.getValues().get(Parameter.V_m_sec.name()).getValue()));
-        edVelocityMmSec.setText(String.valueOf(result.getValues().get(Parameter.V_mm_sec.name()).getValue()));
-        edDisplacementM.setText(String.valueOf(result.getValues().get(Parameter.D_m.name()).getValue()));
-        edDisplacementMm.setText(String.valueOf(result.getValues().get(Parameter.D_mm.name()).getValue()));
+    private void applyResult(Result result, Value value) {
+        if (value.getParameter() != Parameter.A_db) {
+            edAdb.setText(String.valueOf(result.getValues().get(Parameter.A_db.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.V_db_mm_sec) {
+            edVdbMmSec.setText(String.valueOf(result.getValues().get(Parameter.V_db_mm_sec.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.V_db_m_sec) {
+            edVdbMSec.setText(String.valueOf(result.getValues().get(Parameter.V_db_m_sec.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.A_g) {
+            edAccelerationG.setText(String.valueOf(result.getValues().get(Parameter.A_g.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.A_m_sec2) {
+            edAccelerationMsec2.setText(String.valueOf(result.getValues().get(Parameter.A_m_sec2.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.A_mm_sec2) {
+            edAccelerationMmSec2.setText(String.valueOf(result.getValues().get(Parameter.A_mm_sec2.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.V_m_sec) {
+            edVelocityMsec.setText(String.valueOf(result.getValues().get(Parameter.V_m_sec.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.V_mm_sec) {
+            edVelocityMmSec.setText(String.valueOf(result.getValues().get(Parameter.V_mm_sec.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.D_m) {
+            edDisplacementM.setText(String.valueOf(result.getValues().get(Parameter.D_m.name()).getValue()));
+        }
+
+        if (value.getParameter() != Parameter.D_mm) {
+            edDisplacementMm.setText(String.valueOf(result.getValues().get(Parameter.D_mm.name()).getValue()));
+        }
     }
 }
