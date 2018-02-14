@@ -15,7 +15,7 @@ public class VibroCalcDisplacementTest {
 
     @Before
     public void setUp() throws Exception {
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.A_g, EdIzm.RMS);
         parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
         parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
 
@@ -55,7 +55,7 @@ public class VibroCalcDisplacementTest {
         assertEquals(1000.0, value.getValue(), 1.0e-002);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(4.02566, value.getValue(), 1.0e-004);
+        assertEquals(1.42328, value.getValue(), 1.0e-004);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(13.9577, value.getValue(), 1.0e-004);
@@ -153,7 +153,7 @@ public class VibroCalcDisplacementTest {
         assertEquals(1, value.getValue(), 1.0e-007);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(0.00402566, value.getValue(), 1.0e-007);
+        assertEquals(0.00142328, value.getValue(), 1.0e-007);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(0.0139577, value.getValue(), 1.0e-007);

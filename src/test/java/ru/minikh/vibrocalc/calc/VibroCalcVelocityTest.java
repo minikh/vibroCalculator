@@ -15,7 +15,7 @@ public class VibroCalcVelocityTest {
 
     @Before
     public void setUp() throws Exception {
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.A_g, EdIzm.RMS);
         parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
         parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
 
@@ -55,7 +55,7 @@ public class VibroCalcVelocityTest {
         assertEquals(0.450158, value.getValue(), 1.0e-006);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(0.00181218, value.getValue(), 1.0e-007);
+        assertEquals(0.000640703, value.getValue(), 1.0e-007);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(0.00628319, value.getValue(), 1.0e-008);
@@ -153,7 +153,7 @@ public class VibroCalcVelocityTest {
         assertEquals(450.158, value.getValue(), 1.0e-003);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(1.81218, value.getValue(), 1.0e-004);
+        assertEquals(0.640703, value.getValue(), 1.0e-004);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(6.28319, value.getValue(), 1.0e-005);
@@ -202,7 +202,7 @@ public class VibroCalcVelocityTest {
         assertEquals(5.05086e-007, value.getValue(), 1.0e-0012);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(2.0333e-009, value.getValue(), 1.0e-0013);
+        assertEquals(7.18881e-010, value.getValue(), 1.0e-0013);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(7.04985e-009, value.getValue(), 1.0e-0014);
@@ -251,7 +251,7 @@ public class VibroCalcVelocityTest {
         assertEquals(5.05086e-006, value.getValue(), 1.0e-0011);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(2.0333e-008, value.getValue(), 1.0e-0012);
+        assertEquals(7.18881e-009, value.getValue(), 1.0e-0012);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(7.04985e-008, value.getValue(), 1.0e-0013);
