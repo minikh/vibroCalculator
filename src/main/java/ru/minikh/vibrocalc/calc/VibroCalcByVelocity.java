@@ -26,10 +26,10 @@ public class VibroCalcByVelocity extends VibroCalc {
             Double result = null;
             switch (parameter.getKey()) {
                 case A_g:
-                    result = (velocityRms * _2piFreq) / G / KILO;
+                    result = (velocityRms * _2piFreq) / g / mashtabKoeff;
                     break;
                 case A_m_sec2:
-                    result = velocityRms * _2piFreq / KILO;
+                    result = velocityRms * _2piFreq / mashtabKoeff;
                     break;
                 case A_mm_sec2:
                     result = velocityRms * _2piFreq;
@@ -38,19 +38,19 @@ public class VibroCalcByVelocity extends VibroCalc {
                     result = velocityRms;
                     break;
                 case V_m_sec:
-                    result = velocityRms / KILO;
+                    result = velocityRms / mashtabKoeff;
                     break;
                 case D_m:
-                    result = velocityRms / (_2piFreq * KILO);
+                    result = velocityRms / (_2piFreq * mashtabKoeff);
                     break;
                 case D_mm:
                     result = velocityRms / _2piFreq;
                     break;
                 case A_db:
-                    result = 20.0 * Math.log10(velocityRms * _2piFreq / KILO / (G * Math.pow(10, -6)));
+                    result = 20.0 * Math.log10(velocityRms * _2piFreq / mashtabKoeff / (g * Math.pow(10, -6)));
                     break;
                 case V_db_m_sec:
-                    result = 20.0 * Math.log10(velocityRms / KILO / Math.pow(10, -8));
+                    result = 20.0 * Math.log10(velocityRms / mashtabKoeff / Math.pow(10, -8));
                     break;
                 case V_db_mm_sec:
                     result = 20.0 * Math.log10(velocityRms / Math.pow(10, -6));
@@ -73,13 +73,13 @@ public class VibroCalcByVelocity extends VibroCalc {
     private Double translationValue(Value value, Double rms) {
         switch (value.getParameter()) {
             case V_db_m_sec:
-                rms = Math.pow(10, rms / 20.0) * KILO * Math.pow(10, -8);
+                rms = Math.pow(10, rms / 20.0) * mashtabKoeff * Math.pow(10, -8);
                 break;
             case V_db_mm_sec:
                 rms = Math.pow(10, rms / 20.0) * Math.pow(10, -6);
                 break;
             case V_m_sec:
-                rms *= KILO;
+                rms *= mashtabKoeff;
                 break;
             case V_mm_sec:
                 break;

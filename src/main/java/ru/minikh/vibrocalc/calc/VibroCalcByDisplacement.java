@@ -24,16 +24,16 @@ public class VibroCalcByDisplacement extends VibroCalc {
             Double result = null;
             switch (parameter.getKey()) {
                 case A_g:
-                    result = displacementRms * _2piFreq * _2piFreq / G;
+                    result = displacementRms * _2piFreq * _2piFreq / g;
                     break;
                 case A_m_sec2:
                     result = displacementRms * _2piFreq * _2piFreq ;
                     break;
                 case A_mm_sec2:
-                    result = displacementRms * _2piFreq * _2piFreq * KILO;
+                    result = displacementRms * _2piFreq * _2piFreq * mashtabKoeff;
                     break;
                 case V_mm_sec:
-                    result = displacementRms * _2piFreq * KILO;
+                    result = displacementRms * _2piFreq * mashtabKoeff;
                     break;
                 case V_m_sec:
                     result = displacementRms * _2piFreq;
@@ -42,16 +42,16 @@ public class VibroCalcByDisplacement extends VibroCalc {
                     result = displacementRms;
                     break;
                 case D_mm:
-                    result = displacementRms * KILO;
+                    result = displacementRms * mashtabKoeff;
                     break;
                 case A_db:
-                    result = 20.0 * Math.log10(displacementRms * _2piFreq * _2piFreq / (G * Math.pow(10, -6)));
+                    result = 20.0 * Math.log10(displacementRms * _2piFreq * _2piFreq / (g * Math.pow(10, -6)));
                     break;
                 case V_db_m_sec:
                     result = 20.0 * Math.log10(displacementRms * _2piFreq / Math.pow(10, -8));
                     break;
                 case V_db_mm_sec:
-                    result = 20.0 * Math.log10(displacementRms * _2piFreq * KILO / Math.pow(10, -6));
+                    result = 20.0 * Math.log10(displacementRms * _2piFreq * mashtabKoeff / Math.pow(10, -6));
                     break;
             }
 
@@ -73,7 +73,7 @@ public class VibroCalcByDisplacement extends VibroCalc {
             case D_m:
                 break;
             case D_mm:
-                rms /= KILO;
+                rms /= mashtabKoeff;
                 break;
         }
 

@@ -15,7 +15,7 @@ public class Main extends Application {
         primaryStage.setTitle("Виброкалькулятор");
         primaryStage.setResizable(false);
         primaryStage.getIcons().add(new Image("/icon.jpg"));
-        primaryStage.setScene(new Scene(root, 800, 600));
+        primaryStage.setScene(new Scene(root, 800, 550));
         primaryStage.show();
 
     }

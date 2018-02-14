@@ -26,16 +26,16 @@ public class VibroCalcByAcceleration extends VibroCalc {
             Double result = null;
             switch (parameter.getKey()) {
                 case A_g:
-                    result = accelerationRms / G;
+                    result = accelerationRms / g;
                     break;
                 case A_m_sec2:
                     result = accelerationRms;
                     break;
                 case A_mm_sec2:
-                    result = accelerationRms * KILO;
+                    result = accelerationRms * mashtabKoeff;
                     break;
                 case V_mm_sec:
-                    result = accelerationRms / _2piFreq * KILO;
+                    result = accelerationRms / _2piFreq * mashtabKoeff;
                     break;
                 case V_m_sec:
                     result = accelerationRms / _2piFreq;
@@ -44,16 +44,16 @@ public class VibroCalcByAcceleration extends VibroCalc {
                     result = ftToInch * accelerationRms / (_2piFreq) / (_2piFreq);
                     break;
                 case D_mm:
-                    result = inchToMil * accelerationRms / (_2piFreq / KILO) / (_2piFreq);
+                    result = inchToMil * accelerationRms / (_2piFreq / mashtabKoeff) / (_2piFreq);
                     break;
                 case A_db:
-                    result = 20.0 * Math.log10(accelerationRms / (G * Math.pow(10, -6)));
+                    result = 20.0 * Math.log10(accelerationRms / (g * Math.pow(10, -6)));
                     break;
                 case V_db_m_sec:
                     result = 20.0 * Math.log10(accelerationRms / _2piFreq / Math.pow(10, -8));
                     break;
                 case V_db_mm_sec:
-                    result = 20.0 * Math.log10(accelerationRms * KILO / _2piFreq / Math.pow(10, -6));
+                    result = 20.0 * Math.log10(accelerationRms * mashtabKoeff / _2piFreq / Math.pow(10, -6));
                     break;
             }
 
@@ -73,13 +73,13 @@ public class VibroCalcByAcceleration extends VibroCalc {
     private Double translationValue(Value value, Double rms) {
         switch (value.getParameter()) {
             case A_db:
-                rms = Math.pow(10, rms / 20.0) * (G * Math.pow(10, -6));
+                rms = Math.pow(10, rms / 20.0) * (g * Math.pow(10, -6));
                 break;
             case A_g:
-                rms *= G;
+                rms *= g;
                 break;
             case A_mm_sec2:
-                rms /= KILO;
+                rms /= mashtabKoeff;
                 break;
             case A_m_sec2:
                 break;

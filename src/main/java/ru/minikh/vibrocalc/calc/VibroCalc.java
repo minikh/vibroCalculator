@@ -4,13 +4,18 @@ import java.util.Map;
 
 public abstract class VibroCalc {
 
-    final static Double _2_PI = 2 * Math.PI;
-    final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
-    static Double G = 9.80665;
-    static Double KILO = 1000.0;
-    static Double ftToInch = 1.0;
-    static Double inchToMil = 1.0;
-    private Measures measures = Measures.METRIC;
+    private final static Double _2_PI = 2 * Math.PI;
+    private final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
+    private final static Double _KILO = 1000.0;
+    private final static Double _FT_TO_INCH = 12.0;
+    private final static Double _FT_TO_METER = 0.3048;
+    private final static Double _ONE = 1.0;
+
+    Double g = 9.80665;
+    Double mashtabKoeff = 1000.0;
+    Double ftToInch = 1.0;
+    Double inchToMil = 1.0;
+    private static final Double _G = 9.80665;
 
     private Map<Parameter, EdIzm> parameters;
 
@@ -25,26 +30,21 @@ public abstract class VibroCalc {
         return parameters;
     }
 
-    public Measures getMeasures() {
-        return measures;
-    }
-
     public void setMeasures(Measures measures) {
         switch (measures){
             case METRIC:
-                KILO = 1000.0;
-                ftToInch = 1.0;
-                inchToMil = 1.0;
-                G = 9.80665;
+                mashtabKoeff = _KILO;
+                ftToInch = _ONE;
+                inchToMil = _ONE;
+                g = _G;
                 break;
             case ENGLISH:
-                KILO = 12.0;
-                ftToInch = 12.0;
-                inchToMil = 1000.0;
-                G = 9.80665 / 0.3048;
+                mashtabKoeff = _FT_TO_INCH;
+                ftToInch = _FT_TO_INCH;
+                inchToMil = _KILO;
+                g = _G / _FT_TO_METER;
                 break;
         }
-        this.measures = measures;
     }
 
     Double calc2PiFreq(Double freq) {

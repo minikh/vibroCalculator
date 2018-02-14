@@ -3,7 +3,6 @@ package ru.minikh.vibrocalc;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventTarget;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -83,7 +82,6 @@ public class Controller implements Initializable {
     private EdIzm displacementMSelectEdIzmLastValue;
     private EdIzm displacementMmSelectEdIzmLastValue;
 
-    private TextField lastEdit;
     private KeyEvent lastKeyEvent;
 
     private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
@@ -661,8 +659,9 @@ public class Controller implements Initializable {
             displacementMmLabel.setText("Виброперемещение, мм");
         }
 
-//        Event.fireEvent(edAdb, new KeyEvent(KeyEvent.KEY_RELEASED, "", "", KeyCode.ENTER, false, false, false, false));
-        Event.fireEvent((EventTarget) lastKeyEvent.getTarget(), lastKeyEvent);
+        if (lastKeyEvent != null) {
+            Event.fireEvent(lastKeyEvent.getTarget(), lastKeyEvent);
+        }
     }
 
 }
