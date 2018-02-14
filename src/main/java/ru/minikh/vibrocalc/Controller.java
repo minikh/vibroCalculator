@@ -2,6 +2,7 @@ package ru.minikh.vibrocalc;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
@@ -10,7 +11,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import org.apache.commons.lang3.StringUtils;
 import ru.minikh.vibrocalc.calc.*;
 
 import java.io.IOException;
@@ -23,7 +23,6 @@ import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
-    private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
     public Region row1;
     public Region row2;
     public Region row3;
@@ -63,6 +62,16 @@ public class Controller implements Initializable {
     public TextField edFreqHz;
     public TextField edFreqCpm;
 
+    private EdIzm accelerationGSelectEdIzmLastValue;
+    private EdIzm accelerationMsec2SelectEdIzmLastValue;
+    private EdIzm accelerationMmSec2SelectEdIzmLastValue;
+    private EdIzm velocityMsecSelectEdIzmLastValue;
+    private EdIzm velocityMmSecSelectEdIzmLastValue;
+    private EdIzm displacementMSelectEdIzmLastValue;
+    private EdIzm displacementMmSelectEdIzmLastValue;
+
+    private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(new Runnable() {
@@ -80,13 +89,22 @@ public class Controller implements Initializable {
         displacementMSelectEdIzm.getItems().addAll(ED_IZM);
         displacementMmSelectEdIzm.getItems().addAll(ED_IZM);
 
-        accelerationGSelectEdIzm.getSelectionModel().select(3);
+        accelerationGSelectEdIzm.getSelectionModel().select(0);
         accelerationMsec2SelectEdIzm.getSelectionModel().select(0);
         accelerationMmSec2SelectEdIzm.getSelectionModel().select(0);
         velocityMsecSelectEdIzm.getSelectionModel().select(0);
         velocityMmSecSelectEdIzm.getSelectionModel().select(0);
         displacementMSelectEdIzm.getSelectionModel().select(3);
         displacementMmSelectEdIzm.getSelectionModel().select(3);
+
+        accelerationGSelectEdIzmLastValue = EdIzm.getEdIzm((String) accelerationGSelectEdIzm.getSelectionModel().getSelectedItem());
+        accelerationMsec2SelectEdIzmLastValue = EdIzm.getEdIzm((String) accelerationMsec2SelectEdIzm.getSelectionModel().getSelectedItem());
+        accelerationMmSec2SelectEdIzmLastValue = EdIzm.getEdIzm((String) accelerationMmSec2SelectEdIzm.getSelectionModel().getSelectedItem());
+        velocityMsecSelectEdIzmLastValue = EdIzm.getEdIzm((String) velocityMsecSelectEdIzm.getSelectionModel().getSelectedItem());
+        velocityMmSecSelectEdIzmLastValue = EdIzm.getEdIzm((String) velocityMmSecSelectEdIzm.getSelectionModel().getSelectedItem());
+        displacementMSelectEdIzmLastValue = EdIzm.getEdIzm((String) displacementMSelectEdIzm.getSelectionModel().getSelectedItem());
+        displacementMmSelectEdIzmLastValue = EdIzm.getEdIzm((String) displacementMmSelectEdIzm.getSelectionModel().getSelectedItem());
+
 
         row1.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #54548b, #8383db);");
         row2.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #54548b, #8383db);");
@@ -113,14 +131,18 @@ public class Controller implements Initializable {
     }
 
     private boolean isNotNumeric(String text) {
-        if (StringUtils.isNumeric(text)) return false;
+        try {
+            Double.parseDouble(text);
+        } catch (NumberFormatException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Виброкалькулятор");
+            alert.setHeaderText("Ошибка");
+            alert.setContentText("Введите число");
+            alert.showAndWait();
+            return true;
+        }
 
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Виброкалькулятор");
-        alert.setHeaderText("Ошибка");
-        alert.setContentText("Введите число");
-        alert.showAndWait();
-        return true;
+        return false;
     }
 
     private void resetFreq() {
@@ -236,6 +258,24 @@ public class Controller implements Initializable {
         applyResult(result, velocity);
     }
 
+    public void onChangeAccelerationGEdIzm(Event event) {
+        String text = edAccelerationG.getText();
+
+        if (isNotNumeric(text)) return;
+
+        EdIzm edIzm = EdIzm.getEdIzm((String) accelerationGSelectEdIzm.getSelectionModel().getSelectedItem());
+
+        Double value = Double.parseDouble(text);
+        Value acceleration = Value.builder()
+                .value(value)
+                .edIzm(accelerationGSelectEdIzmLastValue)
+                .parameter(Parameter.A_g)
+                .build();
+
+        edAccelerationG.setText(vibroCalcByAcceleration.recalculateValue(acceleration, edIzm));
+        accelerationGSelectEdIzmLastValue = edIzm;
+    }
+
     public void onEditAccelerationG(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
 
@@ -254,6 +294,24 @@ public class Controller implements Initializable {
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
+    }
+
+    public void onChangeAccelerationMsec2EdIzm(Event event) {
+        String text = edAccelerationMsec2.getText();
+
+        if (isNotNumeric(text)) return;
+
+        EdIzm edIzm = EdIzm.getEdIzm((String) accelerationMsec2SelectEdIzm.getSelectionModel().getSelectedItem());
+
+        Double value = Double.parseDouble(text);
+        Value acceleration = Value.builder()
+                .value(value)
+                .edIzm(accelerationMsec2SelectEdIzmLastValue)
+                .parameter(Parameter.A_m_sec2)
+                .build();
+
+        edAccelerationMsec2.setText(vibroCalcByAcceleration.recalculateValue(acceleration, edIzm));
+        accelerationMsec2SelectEdIzmLastValue = edIzm;
     }
 
     public void onEditAccelerationMsec2(KeyEvent keyEvent) {
@@ -276,6 +334,24 @@ public class Controller implements Initializable {
         applyResult(result, acceleration);
     }
 
+    public void onChangeAccelerationMmSec2EdIzm(Event event) {
+        String text = edAccelerationMmSec2.getText();
+
+        if (isNotNumeric(text)) return;
+
+        EdIzm edIzm = EdIzm.getEdIzm((String) accelerationMmSec2SelectEdIzm.getSelectionModel().getSelectedItem());
+
+        Double value = Double.parseDouble(text);
+        Value acceleration = Value.builder()
+                .value(value)
+                .edIzm(accelerationMmSec2SelectEdIzmLastValue)
+                .parameter(Parameter.A_mm_sec2)
+                .build();
+
+        edAccelerationMmSec2.setText(vibroCalcByAcceleration.recalculateValue(acceleration, edIzm));
+        accelerationMmSec2SelectEdIzmLastValue = edIzm;
+    }
+
     public void onEditAccelerationMmSec2(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
 
@@ -294,6 +370,24 @@ public class Controller implements Initializable {
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
+    }
+
+    public void onChangeVelocityMsecEdIzm(Event event) {
+        String text = edVelocityMsec.getText();
+
+        if (isNotNumeric(text)) return;
+
+        EdIzm edIzm = EdIzm.getEdIzm((String) velocityMsecSelectEdIzm.getSelectionModel().getSelectedItem());
+
+        Double value = Double.parseDouble(text);
+        Value velocity = Value.builder()
+                .value(value)
+                .edIzm(velocityMsecSelectEdIzmLastValue)
+                .parameter(Parameter.V_m_sec)
+                .build();
+
+        edVelocityMsec.setText(vibroCalcByVelocity.recalculateValue(velocity, edIzm));
+        velocityMsecSelectEdIzmLastValue = edIzm;
     }
 
     public void onEditVelocityMsec(KeyEvent keyEvent) {
@@ -316,6 +410,24 @@ public class Controller implements Initializable {
         applyResult(result, velocity);
     }
 
+    public void onChangeVelocityMmSecEdIzm(Event event) {
+        String text = edVelocityMmSec.getText();
+
+        if (isNotNumeric(text)) return;
+
+        EdIzm edIzm = EdIzm.getEdIzm((String) velocityMmSecSelectEdIzm.getSelectionModel().getSelectedItem());
+
+        Double value = Double.parseDouble(text);
+        Value velocity = Value.builder()
+                .value(value)
+                .edIzm(velocityMmSecSelectEdIzmLastValue)
+                .parameter(Parameter.V_mm_sec)
+                .build();
+
+        edVelocityMmSec.setText(vibroCalcByVelocity.recalculateValue(velocity, edIzm));
+        velocityMmSecSelectEdIzmLastValue = edIzm;
+    }
+
     public void onEditVelocityMmSec(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
 
@@ -336,6 +448,24 @@ public class Controller implements Initializable {
         applyResult(result, velocity);
     }
 
+    public void onChangeDisplacementMEdIzm(Event event) {
+        String text = edDisplacementM.getText();
+
+        if (isNotNumeric(text)) return;
+
+        EdIzm edIzm = EdIzm.getEdIzm((String) displacementMSelectEdIzm.getSelectionModel().getSelectedItem());
+
+        Double value = Double.parseDouble(text);
+        Value displacement = Value.builder()
+                .value(value)
+                .edIzm(displacementMSelectEdIzmLastValue)
+                .parameter(Parameter.D_m)
+                .build();
+
+        edDisplacementM.setText(vibroCalcByDisplacement.recalculateValue(displacement, edIzm));
+        displacementMSelectEdIzmLastValue = edIzm;
+    }
+
     public void onEditDisplacementM(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
 
@@ -354,6 +484,24 @@ public class Controller implements Initializable {
         Result result = vibroCalcByDisplacement.calculate(displacement, getFreq());
 
         applyResult(result, displacement);
+    }
+
+    public void onChangeDisplacementMmEdIzm(Event event) {
+        String text = edDisplacementMm.getText();
+
+        if (isNotNumeric(text)) return;
+
+        EdIzm edIzm = EdIzm.getEdIzm((String) displacementMmSelectEdIzm.getSelectionModel().getSelectedItem());
+
+        Double value = Double.parseDouble(text);
+        Value displacement = Value.builder()
+                .value(value)
+                .edIzm(displacementMmSelectEdIzmLastValue)
+                .parameter(Parameter.D_mm)
+                .build();
+
+        edDisplacementMm.setText(vibroCalcByDisplacement.recalculateValue(displacement, edIzm));
+        displacementMmSelectEdIzmLastValue = edIzm;
     }
 
     public void onEditDisplacementMm(KeyEvent keyEvent) {
