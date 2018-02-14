@@ -15,7 +15,7 @@ public class VibroCalcAccelerationTest {
 
     @Before
     public void setUp() throws Exception {
-        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
+        parameters.put(Parameter.A_g, EdIzm.RMS);
         parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
         parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
 
@@ -55,7 +55,7 @@ public class VibroCalcAccelerationTest {
         assertEquals(71.6449, value.getValue(), 0.00001);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(0.288418, value.getValue(), 0.00001);
+        assertEquals(0.101971, value.getValue(), 0.00001);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(1.0, value.getValue(), 0.01);
@@ -104,7 +104,7 @@ public class VibroCalcAccelerationTest {
         assertEquals(143.29, value.getValue(), 0.001);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(0.576836, value.getValue(), 0.00001);
+        assertEquals(0.203942, value.getValue(), 0.00001);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(2.0, value.getValue(), 0.01);
@@ -153,7 +153,7 @@ public class VibroCalcAccelerationTest {
         assertEquals(0.0716449, value.getValue(), 0.000001);
 
         value = result.getValues().get(Parameter.A_g.name());
-        assertEquals(0.000288418, value.getValue(), 0.00000001);
+        assertEquals(0.000101971, value.getValue(), 0.00000001);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
         assertEquals(0.001, value.getValue(), 0.001);
@@ -180,7 +180,7 @@ public class VibroCalcAccelerationTest {
     public void testCalc2Ag() {
         Value acceleration = Value.builder()
                 .value(1.0)
-                .edIzm(EdIzm.PEAK_TO_PEAK)
+                .edIzm(EdIzm.RMS)
                 .parameter(Parameter.A_g)
                 .build();
 
@@ -190,34 +190,34 @@ public class VibroCalcAccelerationTest {
         Result result = vibroCalc.calculate(acceleration, 1.0);
 
         Value value = result.getValues().get(Parameter.V_mm_sec.name());
-        assertEquals(551.821, value.getValue(), 0.01);
+        assertEquals(1560.78, value.getValue(), 0.01);
 
         value = result.getValues().get(Parameter.V_m_sec.name());
-        assertEquals(0.551821, value.getValue(), 1.0e-004);
+        assertEquals(1.56078, value.getValue(), 1.0e-004);
 
         value = result.getValues().get(Parameter.D_m.name());
-        assertEquals(0.248407, value.getValue(), 1.0e-005);
+        assertEquals(0.7026, value.getValue(), 1.0e-005);
 
         value = result.getValues().get(Parameter.D_mm.name());
-        assertEquals(248.407, value.getValue(), 1.0e-002);
+        assertEquals(702.6, value.getValue(), 1.0e-002);
 
         value = result.getValues().get(Parameter.A_g.name());
         assertEquals(1.0, value.getValue(), 0.00000001);
 
         value = result.getValues().get(Parameter.A_m_sec2.name());
-        assertEquals(3.46719, value.getValue(), 1.0e-004);
+        assertEquals(9.8067, value.getValue(), 1.0e-004);
 
         value = result.getValues().get(Parameter.A_mm_sec2.name());
-        assertEquals(3467.19, value.getValue(), 1.0e-001);
+        assertEquals(9806.7, value.getValue(), 1.0e-001);
 
         value = result.getValues().get(Parameter.A_db.name());
-        assertEquals(110.969, value.getValue(), 1.0e-003);
+        assertEquals(120, value.getValue(), 1.0e-003);
 
         value = result.getValues().get(Parameter.V_db_m_sec.name());
-        assertEquals(154.836, value.getValue(), 0.0001);
+        assertEquals(163.867, value.getValue(), 1.0e-002);
 
         value = result.getValues().get(Parameter.V_db_mm_sec.name());
-        assertEquals(174.836, value.getValue(), 0.0001);
+        assertEquals(183.867, value.getValue(), 1.0e-002);
 
 
         for (Map.Entry<String, Value> valueEntry : result.getValues().entrySet()) {
