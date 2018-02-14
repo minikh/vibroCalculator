@@ -10,12 +10,13 @@ public abstract class VibroCalc {
     private final static Double _FT_TO_INCH = 12.0;
     private final static Double _FT_TO_METER = 0.3048;
     private final static Double _ONE = 1.0;
+    private final static Double _SQRT_2 = Math.sqrt(2);
+    private static final Double _G = 9.80665;
 
     Double g = 9.80665;
     Double mashtabKoeff = 1000.0;
     Double ftToInch = 1.0;
     Double inchToMil = 1.0;
-    private static final Double _G = 9.80665;
 
     private Map<Parameter, EdIzm> parameters;
 
@@ -68,13 +69,13 @@ public abstract class VibroCalc {
                         .edIzm(parameter);
                 break;
             case PEAK:
-                result = rmsValue * Math.sqrt(2);
+                result = rmsValue * _SQRT_2;
                 valueBuilder
                         .value(result)
                         .edIzm(parameter);
                 break;
             case PEAK_TO_PEAK:
-                result = rmsValue * Math.sqrt(2) * 2;
+                result = rmsValue * _SQRT_2 * 2;
                 valueBuilder
                         .value(result)
                         .edIzm(parameter);
@@ -105,10 +106,10 @@ public abstract class VibroCalc {
                 rms = value.getValue() * AVG_TO_RMS_KOEFF;
                 break;
             case PEAK:
-                rms = value.getValue() / Math.sqrt(2);
+                rms = value.getValue() / _SQRT_2;
                 break;
             case PEAK_TO_PEAK:
-                rms = value.getValue() / 2 / Math.sqrt(2);
+                rms = value.getValue() / 2 / _SQRT_2;
                 break;
         }
         return rms;
