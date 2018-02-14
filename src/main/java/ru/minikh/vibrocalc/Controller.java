@@ -3,6 +3,7 @@ package ru.minikh.vibrocalc;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventTarget;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -81,6 +82,9 @@ public class Controller implements Initializable {
     private EdIzm velocityMmSecSelectEdIzmLastValue;
     private EdIzm displacementMSelectEdIzmLastValue;
     private EdIzm displacementMmSelectEdIzmLastValue;
+
+    private TextField lastEdit;
+    private KeyEvent lastKeyEvent;
 
     private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
 
@@ -228,6 +232,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onEditVdbMmSec(KeyEvent keyEvent) {
@@ -248,6 +254,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
 
         applyResult(result, velocity);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onEditVdbMsec(KeyEvent keyEvent) {
@@ -268,6 +276,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
 
         applyResult(result, velocity);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onChangeAccelerationGEdIzm(Event event) {
@@ -306,6 +316,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onChangeAccelerationMsec2EdIzm(Event event) {
@@ -344,6 +356,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onChangeAccelerationMmSec2EdIzm(Event event) {
@@ -382,6 +396,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByAcceleration.calculate(acceleration, getFreq());
 
         applyResult(result, acceleration);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onChangeVelocityMsecEdIzm(Event event) {
@@ -420,6 +436,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
 
         applyResult(result, velocity);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onChangeVelocityMmSecEdIzm(Event event) {
@@ -458,6 +476,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByVelocity.calculate(velocity, getFreq());
 
         applyResult(result, velocity);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onChangeDisplacementMEdIzm(Event event) {
@@ -496,6 +516,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByDisplacement.calculate(displacement, getFreq());
 
         applyResult(result, displacement);
+
+        lastKeyEvent = keyEvent;
     }
 
     public void onChangeDisplacementMmEdIzm(Event event) {
@@ -534,6 +556,8 @@ public class Controller implements Initializable {
         Result result = vibroCalcByDisplacement.calculate(displacement, getFreq());
 
         applyResult(result, displacement);
+
+        lastKeyEvent = keyEvent;
     }
 
     private void applyResult(Result result, Value value) {
@@ -636,6 +660,9 @@ public class Controller implements Initializable {
             displacementMLabel.setText("Виброперемещение, м");
             displacementMmLabel.setText("Виброперемещение, мм");
         }
+
+//        Event.fireEvent(edAdb, new KeyEvent(KeyEvent.KEY_RELEASED, "", "", KeyCode.ENTER, false, false, false, false));
+        Event.fireEvent((EventTarget) lastKeyEvent.getTarget(), lastKeyEvent);
     }
 
 }
