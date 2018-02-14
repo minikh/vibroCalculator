@@ -148,11 +148,7 @@ public class Controller implements Initializable {
         try {
             Double.parseDouble(text);
         } catch (NumberFormatException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Виброкалькулятор");
-            alert.setHeaderText("Ошибка");
-            alert.setContentText("Введите число");
-            alert.showAndWait();
+            AppAlert.showErrorAlert("Введите число");
             return true;
         }
 
@@ -186,6 +182,12 @@ public class Controller implements Initializable {
 
         Double freq = Double.parseDouble(text);
 
+        if (freq > 100_000) {
+            AppAlert.showErrorAlert("Введите число от 0 до 100 000");
+            edFreqHz.selectAll();
+            return;
+        }
+
         resetResult();
         edFreqCpm.setText(String.valueOf(freq * 60));
     }
@@ -198,6 +200,12 @@ public class Controller implements Initializable {
         if (isNotNumeric(text)) return;
 
         Double freq = Double.parseDouble(text);
+
+        if (freq > 6_000_000) {
+            AppAlert.showErrorAlert("Введите число от 0 до 6 000 000");
+            edFreqCpm.selectAll();
+            return;
+        }
 
         resetResult();
         edFreqHz.setText(String.valueOf(freq / 60));
