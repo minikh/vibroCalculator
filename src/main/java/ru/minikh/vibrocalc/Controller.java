@@ -203,10 +203,6 @@ public class Controller implements Initializable {
         edFreqHz.setText(String.valueOf(freq / 60));
     }
 
-    public void onEditA(KeyEvent keyEvent) {
-
-    }
-
     public void btnResetResult(ActionEvent actionEvent) {
         resetResult();
         resetFreq();
@@ -664,4 +660,7 @@ public class Controller implements Initializable {
         }
     }
 
+    public void edOnClick(MouseEvent mouseEvent) {
+        ((TextField) mouseEvent.getSource()).selectAll();
+    }
 }
