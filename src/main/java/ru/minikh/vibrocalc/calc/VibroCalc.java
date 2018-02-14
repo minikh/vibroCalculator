@@ -41,38 +41,47 @@ public abstract class VibroCalc {
         return _2_PI * freq;
     }
 
-    Value prepareResult(Map.Entry<Parameter, EdIzm> parameter,
-                        Double rmsValue,
-                        Value.ValueBuilder valueBuilder) {
+    Value prepareResult(EdIzm parameter, Double rmsValue, Value.ValueBuilder valueBuilder) {
         Double result;
-        switch (parameter.getValue()) {
+        switch (parameter) {
             case RMS:
             case NONE:
                 result = rmsValue;
                 valueBuilder
                         .value(result)
-                        .edIzm(parameter.getValue());
+                        .edIzm(parameter);
                 break;
             case AVG:
                 result = rmsValue / AVG_TO_RMS_KOEFF;
                 valueBuilder
                         .value(result)
-                        .edIzm(parameter.getValue());
+                        .edIzm(parameter);
                 break;
             case PEAK:
                 result = rmsValue * Math.sqrt(2);
                 valueBuilder
                         .value(result)
-                        .edIzm(parameter.getValue());
+                        .edIzm(parameter);
                 break;
             case PEAK_TO_PEAK:
                 result = rmsValue * Math.sqrt(2) * 2;
                 valueBuilder
                         .value(result)
-                        .edIzm(parameter.getValue());
+                        .edIzm(parameter);
                 break;
         }
         return valueBuilder.build();
+    }
+
+    public String recalculateValue(Value value, EdIzm currentEdIzm) {
+        if (currentEdIzm == value.getEdIzm()) return String.valueOf(value.getValue());
+
+        Double rms = prepareValue(value);
+
+        Value.ValueBuilder valueBuilder = Value.builder()
+                .parameter(value.getParameter());
+        Value result = prepareResult(currentEdIzm, rms, valueBuilder);
+        return String.valueOf(result.getValue());
     }
 
     Double prepareValue(Value value) {

@@ -60,7 +60,7 @@ public class VibroCalcByDisplacement extends VibroCalc {
             if (result != null) {
                 Value.ValueBuilder valueBuilder = Value.builder()
                         .parameter(parameter.getKey());
-                Value resultValue = prepareResult(parameter, result, valueBuilder);
+                Value resultValue = prepareResult(parameter.getValue(), result, valueBuilder);
                 valueMap.put(resultValue.getParameter().name(), resultValue);
             }
         }
