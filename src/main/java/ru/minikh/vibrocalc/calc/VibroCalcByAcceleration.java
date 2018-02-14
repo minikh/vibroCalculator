@@ -41,10 +41,10 @@ public class VibroCalcByAcceleration extends VibroCalc {
                     result = accelerationRms / _2piFreq;
                     break;
                 case D_m:
-                    result = accelerationRms / (_2piFreq) / (_2piFreq);
+                    result = ftToInch * accelerationRms / (_2piFreq) / (_2piFreq);
                     break;
                 case D_mm:
-                    result = accelerationRms / (_2piFreq / KILO) / (_2piFreq);
+                    result = inchToMil * accelerationRms / (_2piFreq / KILO) / (_2piFreq);
                     break;
                 case A_db:
                     result = 20.0 * Math.log10(accelerationRms / (G * Math.pow(10, -6)));

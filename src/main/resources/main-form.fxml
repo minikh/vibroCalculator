@@ -18,201 +18,261 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" prefHeight="600.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.minikh.vibrocalc.Controller">
+<GridPane alignment="center" hgap="10" prefHeight="600.0" prefWidth="800.0" vgap="10"
+          xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="ru.minikh.vibrocalc.Controller">
     <columnConstraints>
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="119.0" />
-        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="73.0" />
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.0" minWidth="400.0" prefWidth="528.0" />
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="260.0" minWidth="10.0" prefWidth="119.0"/>
+        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="321.0" minWidth="10.0" prefWidth="73.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="528.0" minWidth="400.0" prefWidth="528.0"/>
     </columnConstraints>
     <rowConstraints>
-        <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="419.0" minHeight="10.0" prefHeight="419.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="130.0" minHeight="4.0" prefHeight="14.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES" />
-        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="73.0" minHeight="10.0" prefHeight="46.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="419.0" minHeight="10.0" prefHeight="419.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="130.0" minHeight="4.0" prefHeight="14.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="19.0" vgrow="SOMETIMES"/>
+        <RowConstraints maxHeight="130.0" minHeight="10.0" prefHeight="51.0" vgrow="SOMETIMES"/>
     </rowConstraints>
     <children>
-        <GridPane alignment="CENTER" hgap="5.0" prefHeight="294.0" prefWidth="662.0" vgap="5.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <GridPane alignment="CENTER" hgap="5.0" prefHeight="294.0" prefWidth="662.0" vgap="5.0" GridPane.columnIndex="2"
+                  GridPane.rowIndex="1">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="159.0" prefWidth="189.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0" prefWidth="95.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="190.0" prefWidth="190.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="194.0" minWidth="159.0" prefWidth="189.0"/>
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="125.0" minWidth="10.0"
+                                   prefWidth="95.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="195.0" minWidth="190.0" prefWidth="190.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
+                <RowConstraints/>
             </rowConstraints>
             <children>
-                <Region fx:id="row1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="0" />
-                <TextField fx:id="edAdb" onKeyReleased="#onEditAdb" text="0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Region fx:id="row1" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="0"/>
+                <TextField fx:id="edAdb" onKeyReleased="#onEditAdb" text="0" GridPane.columnIndex="0"
+                           GridPane.rowIndex="0">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <Label contentDisplay="CENTER" text="AdB re 1 micro g" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Label fx:id="aDbLabel" contentDisplay="CENTER" text="AdB re 1 micro g" textAlignment="JUSTIFY"
+                       textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="0"/>
 
-                <Region fx:id="row2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="1" />
-                <TextField fx:id="edVdbMmSec" onKeyReleased="#onEditVdbMmSec" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Region fx:id="row2" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="1"/>
+                <TextField fx:id="edVdbMmSec" onKeyReleased="#onEditVdbMmSec" text="0" GridPane.columnIndex="0"
+                           GridPane.rowIndex="1">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <Label contentDisplay="CENTER" text="ISO" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Label contentDisplay="CENTER" text="VdB re 1x10e-6 мм/сек" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Label contentDisplay="CENTER" text="ISO" textAlignment="JUSTIFY" textFill="#f5efef"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Label fx:id="vDbMmSecLabel" contentDisplay="CENTER" text="VdB re 1x10e-6 мм/сек"
+                       textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
 
-                <Region fx:id="row3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="2" />
-                <TextField fx:id="edVdbMSec" onKeyReleased="#onEditVdbMsec" text="0" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                <Region fx:id="row3" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="2"/>
+                <TextField fx:id="edVdbMSec" onKeyReleased="#onEditVdbMsec" text="0" GridPane.columnIndex="0"
+                           GridPane.rowIndex="2">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <Label contentDisplay="CENTER" text="US" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Label contentDisplay="CENTER" text="VdB re 1x10e-8 м/с" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Label contentDisplay="CENTER" text="US" textAlignment="JUSTIFY" textFill="#f5efef"
+                       GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+                <Label fx:id="vDbMSecLabel" contentDisplay="CENTER" text="VdB re 1x10e-8 м/с" textAlignment="JUSTIFY"
+                       textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
 
-                <Region fx:id="row4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="3" />
-                <TextField fx:id="edAccelerationG" onKeyReleased="#onEditAccelerationG" text="0" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                <Region fx:id="row4" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="3"/>
+                <TextField fx:id="edAccelerationG" onKeyReleased="#onEditAccelerationG" text="0"
+                           GridPane.columnIndex="0" GridPane.rowIndex="3">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <ComboBox fx:id="accelerationGSelectEdIzm" onHidden="#onChangeAccelerationGEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                <Label contentDisplay="CENTER" text="Виброускорение, g" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                <ComboBox fx:id="accelerationGSelectEdIzm" onHidden="#onChangeAccelerationGEdIzm" prefHeight="31.0"
+                          prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+                <Label fx:id="AccelerationGLabel" contentDisplay="CENTER" text="Виброускорение, g"
+                       textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
 
-                <Region fx:id="row5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="4" />
-                <TextField fx:id="edAccelerationMsec2" onKeyReleased="#onEditAccelerationMsec2" text="0" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                <Region fx:id="row5" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="4"/>
+                <TextField fx:id="edAccelerationMsec2" onKeyReleased="#onEditAccelerationMsec2" text="0"
+                           GridPane.columnIndex="0" GridPane.rowIndex="4">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <ComboBox fx:id="accelerationMsec2SelectEdIzm" onHidden="#onChangeAccelerationMsec2EdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Label contentDisplay="CENTER" text="Виброускорение, м/с2" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                <ComboBox fx:id="accelerationMsec2SelectEdIzm" onHidden="#onChangeAccelerationMsec2EdIzm"
+                          prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+                <Label fx:id="AccelerationMSec2Label" contentDisplay="CENTER" text="Виброускорение, м/с2"
+                       textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
 
-                <Region fx:id="row6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="5" />
-                <TextField fx:id="edAccelerationMmSec2" onKeyReleased="#onEditAccelerationMmSec2" text="0" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                <Region fx:id="row6" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="5"/>
+                <TextField fx:id="edAccelerationMmSec2" onKeyReleased="#onEditAccelerationMmSec2" text="0"
+                           GridPane.columnIndex="0" GridPane.rowIndex="5">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <ComboBox fx:id="accelerationMmSec2SelectEdIzm" onHidden="#onChangeAccelerationMmSec2EdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-                <Label contentDisplay="CENTER" text="Виброускорение, мм/с2" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                <ComboBox fx:id="accelerationMmSec2SelectEdIzm" onHidden="#onChangeAccelerationMmSec2EdIzm"
+                          prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+                <Label fx:id="AccelerationMmSec2Label" contentDisplay="CENTER" text="Виброускорение, мм/с2"
+                       textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="5"/>
 
-                <Region fx:id="row7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="6" />
-                <TextField fx:id="edVelocityMsec" onKeyReleased="#onEditVelocityMsec" text="0" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                <Region fx:id="row7" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="6"/>
+                <TextField fx:id="edVelocityMsec" onKeyReleased="#onEditVelocityMsec" text="0" GridPane.columnIndex="0"
+                           GridPane.rowIndex="6">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <ComboBox fx:id="velocityMsecSelectEdIzm" onHidden="#onChangeVelocityMsecEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-                <Label contentDisplay="CENTER" text="Виброскорость, м/с" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+                <ComboBox fx:id="velocityMsecSelectEdIzm" onHidden="#onChangeVelocityMsecEdIzm" prefHeight="31.0"
+                          prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
+                <Label fx:id="velocityMSecLabel" contentDisplay="CENTER" text="Виброскорость, м/с"
+                       textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="6"/>
 
-                <Region fx:id="row8" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="7" />
-                <TextField fx:id="edVelocityMmSec" onKeyReleased="#onEditVelocityMmSec" text="0" GridPane.columnIndex="0" GridPane.rowIndex="7">
+                <Region fx:id="row8" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="7"/>
+                <TextField fx:id="edVelocityMmSec" onKeyReleased="#onEditVelocityMmSec" text="0"
+                           GridPane.columnIndex="0" GridPane.rowIndex="7">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <ComboBox fx:id="velocityMmSecSelectEdIzm" onHidden="#onChangeVelocityMmSecEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="7" />
-                <Label contentDisplay="CENTER" text="Виброскорость, мм/с" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+                <ComboBox fx:id="velocityMmSecSelectEdIzm" onHidden="#onChangeVelocityMmSecEdIzm" prefHeight="31.0"
+                          prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="7"/>
+                <Label fx:id="velocityMmSecLabel" contentDisplay="CENTER" text="Виброскорость, мм/с"
+                       textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="7"/>
 
-                <Region fx:id="row9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="8" />
-                <TextField fx:id="edDisplacementM" onKeyReleased="#onEditDisplacementM" text="0" GridPane.columnIndex="0" GridPane.rowIndex="8">
+                <Region fx:id="row9" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="8"/>
+                <TextField fx:id="edDisplacementM" onKeyReleased="#onEditDisplacementM" text="0"
+                           GridPane.columnIndex="0" GridPane.rowIndex="8">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <ComboBox fx:id="displacementMSelectEdIzm" onHidden="#onChangeDisplacementMEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="8" />
-                <Label contentDisplay="CENTER" text="Виброперемещение, м" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+                <ComboBox fx:id="displacementMSelectEdIzm" onHidden="#onChangeDisplacementMEdIzm" prefHeight="31.0"
+                          prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="8"/>
+                <Label fx:id="displacementMLabel" contentDisplay="CENTER" text="Виброперемещение, м"
+                       textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="8"/>
 
-                <Region fx:id="row10" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="3" GridPane.rowIndex="9" />
-                <TextField fx:id="edDisplacementMm" onKeyReleased="#onEditDisplacementMm" text="0" GridPane.columnIndex="0" GridPane.rowIndex="9">
+                <Region fx:id="row10" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="3" GridPane.rowIndex="9"/>
+                <TextField fx:id="edDisplacementMm" onKeyReleased="#onEditDisplacementMm" text="0"
+                           GridPane.columnIndex="0" GridPane.rowIndex="9">
                     <GridPane.margin>
-                        <Insets left="5.0" />
+                        <Insets left="5.0"/>
                     </GridPane.margin>
                 </TextField>
-                <ComboBox fx:id="displacementMmSelectEdIzm" onHidden="#onChangeDisplacementMmEdIzm" prefHeight="31.0" prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="9" />
-                <Label contentDisplay="CENTER" text="Виброперемещение, мм" textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+                <ComboBox fx:id="displacementMmSelectEdIzm" onHidden="#onChangeDisplacementMmEdIzm" prefHeight="31.0"
+                          prefWidth="105.0" GridPane.columnIndex="1" GridPane.rowIndex="9"/>
+                <Label fx:id="displacementMmLabel" contentDisplay="CENTER" text="Виброперемещение, мм"
+                       textAlignment="JUSTIFY" textFill="#f5efef" GridPane.columnIndex="2" GridPane.rowIndex="9"/>
 
             </children>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </padding>
         </GridPane>
-        <GridPane alignment="CENTER" hgap="5.0" prefHeight="156.0" prefWidth="310.0" vgap="5.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+        <GridPane alignment="CENTER" hgap="5.0" prefHeight="156.0" prefWidth="310.0" vgap="5.0" GridPane.columnIndex="0"
+                  GridPane.columnSpan="2" GridPane.rowIndex="1">
             <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="150.0" minWidth="100.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="620.0" minWidth="113.0" prefWidth="113.0" />
-                <ColumnConstraints maxWidth="77.0" minWidth="6.0" prefWidth="77.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="150.0" minWidth="100.0"
+                                   prefWidth="100.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="620.0" minWidth="113.0" prefWidth="113.0"/>
+                <ColumnConstraints maxWidth="77.0" minWidth="6.0" prefWidth="77.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="298.0" minHeight="26.0" prefHeight="43.0" />
-                <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="41.0" />
-                <RowConstraints maxHeight="211.0" minHeight="7.0" prefHeight="37.0" />
-                <RowConstraints maxHeight="160.0" minHeight="8.0" prefHeight="157.0" />
-                <RowConstraints maxHeight="106.0" minHeight="8.0" prefHeight="80.0" />
+                <RowConstraints maxHeight="283.0" minHeight="10.0" prefHeight="39.0" vgrow="SOMETIMES"/>
+                <RowConstraints maxHeight="298.0" minHeight="26.0" prefHeight="43.0"/>
+                <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="41.0"/>
+                <RowConstraints maxHeight="211.0" minHeight="7.0" prefHeight="37.0"/>
+                <RowConstraints maxHeight="160.0" minHeight="8.0" prefHeight="157.0"/>
+                <RowConstraints maxHeight="106.0" minHeight="8.0" prefHeight="80.0"/>
             </rowConstraints>
             <children>
-                <Region fx:id="row20" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
-                <TextField fx:id="edFreqHz" onKeyReleased="#onEditFreqHz" prefHeight="31.0" prefWidth="95.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="0">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin></TextField>
-                <Label contentDisplay="CENTER" text="Частота, Гц" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Region fx:id="row20" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="2" GridPane.rowIndex="0"/>
+                <TextField fx:id="edFreqHz" onKeyReleased="#onEditFreqHz" prefHeight="31.0" prefWidth="95.0" text="0"
+                           GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <GridPane.margin>
+                        <Insets left="5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <Label contentDisplay="CENTER" text="Частота, Гц" textAlignment="JUSTIFY" textFill="#f5f3f3"
+                       GridPane.columnIndex="1" GridPane.rowIndex="0"/>
 
-                <Region fx:id="row21" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                <TextField fx:id="edFreqCpm" onKeyReleased="#onEditFreqCpm" text="0" GridPane.columnIndex="0" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets left="5.0" />
-               </GridPane.margin></TextField>
-                <Label contentDisplay="CENTER" text="Частота, об/мин" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="44.0" prefWidth="95.0" text="Сброс" GridPane.rowIndex="4" />
-                <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                <Region fx:id="row21" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0"
+                        GridPane.columnSpan="2" GridPane.rowIndex="1"/>
+                <TextField fx:id="edFreqCpm" onKeyReleased="#onEditFreqCpm" text="0" GridPane.columnIndex="0"
+                           GridPane.rowIndex="1">
+                    <GridPane.margin>
+                        <Insets left="5.0"/>
+                    </GridPane.margin>
+                </TextField>
+                <Label contentDisplay="CENTER" text="Частота, об/мин" textAlignment="JUSTIFY" textFill="#f5f3f3"
+                       GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+                <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="44.0" prefWidth="95.0"
+                        text="Сброс" GridPane.rowIndex="4"/>
+                <ImageView fitHeight="150.0" fitWidth="200.0" onMouseClicked="#openUrl" pickOnBounds="true"
+                           preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="5"
+                           GridPane.valignment="CENTER">
                     <image>
-                        <Image url="@logo.JPG" />
+                        <Image url="@logo.JPG"/>
                     </image>
                     <cursor>
-                        <Cursor fx:constant="HAND" />
+                        <Cursor fx:constant="HAND"/>
                     </cursor>
                 </ImageView>
-            <RadioButton mnemonicParsing="false" selected="true" text="English" GridPane.rowIndex="2">
-               <toggleGroup>
-                  <ToggleGroup fx:id="rbGroup" />
-               </toggleGroup></RadioButton>
-            <RadioButton mnemonicParsing="false" selected="true" text="Metric" toggleGroup="$rbGroup" GridPane.rowIndex="3" />
+                <RadioButton fx:id="isEnglish" mnemonicParsing="false" onMouseClicked="#setEnglish" selected="true"
+                             text="English" GridPane.rowIndex="2">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="rbGroup"/>
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="isMetric" mnemonicParsing="false" onMouseClicked="#setEnglish" selected="true"
+                             text="Metric" toggleGroup="$rbGroup" GridPane.rowIndex="3"/>
             </children>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
             </padding>
         </GridPane>
         <Label text="ВИБРОКАЛЬКУЛЯТОР" GridPane.columnSpan="3">
             <font>
-                <Font name="System Bold" size="60.0" />
+                <Font name="System Bold" size="60.0"/>
             </font>
         </Label>
-        <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+        <Separator prefWidth="200.0" GridPane.columnSpan="3" GridPane.rowIndex="3"/>
         <GridPane prefHeight="18.0" prefWidth="361.0" GridPane.columnIndex="2" GridPane.rowIndex="2">
             <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="508.0" minWidth="10.0" prefWidth="357.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="171.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="508.0" minWidth="10.0" prefWidth="357.0"/>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="221.0" minWidth="10.0" prefWidth="171.0"/>
             </columnConstraints>
             <rowConstraints>
-                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" vgrow="SOMETIMES"/>
             </rowConstraints>
             <children>
-                <Hyperlink alignment="CENTER" onMouseClicked="#openUrl" prefHeight="29.0" prefWidth="133.0" text="www.vibrtest.ru" textAlignment="RIGHT" GridPane.columnIndex="1" />
+                <Hyperlink alignment="CENTER" onMouseClicked="#openUrl" prefHeight="29.0" prefWidth="133.0"
+                           text="www.vibrtest.ru" textAlignment="RIGHT" GridPane.columnIndex="1"/>
             </children>
         </GridPane>
-        <Region fx:id="row" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+        <Region fx:id="row" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="4"/>
     </children>
     <padding>
-        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
     </padding>
 </GridPane>

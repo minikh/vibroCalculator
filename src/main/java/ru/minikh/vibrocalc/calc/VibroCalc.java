@@ -6,36 +6,46 @@ public abstract class VibroCalc {
 
     final static Double _2_PI = 2 * Math.PI;
     final static Double AVG_TO_RMS_KOEFF = 1.1098901098901098901098901098901;
-    final static Double G = 9.80665;
-    final static Double KILO = 1000.0;
+    static Double G = 9.80665;
+    static Double KILO = 1000.0;
+    static Double ftToInch = 1.0;
+    static Double inchToMil = 1.0;
+    private Measures measures = Measures.METRIC;
 
     private Map<Parameter, EdIzm> parameters;
 
-    public VibroCalc() {
-//        parameters.put(Parameter.A_g, EdIzm.PEAK_TO_PEAK);
-//        parameters.put(Parameter.A_m_sec2, EdIzm.RMS);
-//        parameters.put(Parameter.A_mm_sec2, EdIzm.RMS);
-//
-//        parameters.put(Parameter.V_m_sec, EdIzm.RMS);
-//        parameters.put(Parameter.V_mm_sec, EdIzm.RMS);
-//        parameters.put(Parameter.D_m, EdIzm.PEAK_TO_PEAK);
-//        parameters.put(Parameter.D_mm, EdIzm.PEAK_TO_PEAK);
-//
-//        parameters.put(Parameter.A_db, EdIzm.NONE);
-//        parameters.put(Parameter.V_db_m_sec, EdIzm.NONE);
-//        parameters.put(Parameter.V_db_mm_sec, EdIzm.NONE);
-    }
+    public abstract Result calculate(Value value, Double freq);
 
     public void setParameters(Map<Parameter, EdIzm> parameters) {
         this.parameters = parameters;
     }
 
-    public Map<Parameter, EdIzm> getParameters() {
+    Map<Parameter, EdIzm> getParameters() {
         if (parameters == null) throw new RuntimeException("Не заданы параметры");
         return parameters;
     }
 
-    public abstract Result calculate(Value value, Double freq);
+    public Measures getMeasures() {
+        return measures;
+    }
+
+    public void setMeasures(Measures measures) {
+        switch (measures){
+            case METRIC:
+                KILO = 1000.0;
+                ftToInch = 1.0;
+                inchToMil = 1.0;
+                G = 9.80665;
+                break;
+            case ENGLISH:
+                KILO = 12.0;
+                ftToInch = 12.0;
+                inchToMil = 1000.0;
+                G = 9.80665 / 0.3048;
+                break;
+        }
+        this.measures = measures;
+    }
 
     Double calc2PiFreq(Double freq) {
         return _2_PI * freq;

@@ -4,9 +4,7 @@ import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -35,6 +33,20 @@ public class Controller implements Initializable {
     public Region row10;
     public Region row20;
     public Region row21;
+
+    public RadioButton isEnglish;
+    public RadioButton isMetric;
+
+    public Label aDbLabel;
+    public Label vDbMmSecLabel;
+    public Label vDbMSecLabel;
+    public Label AccelerationGLabel;
+    public Label AccelerationMSec2Label;
+    public Label AccelerationMmSec2Label;
+    public Label velocityMSecLabel;
+    public Label velocityMmSecLabel;
+    public Label displacementMLabel;
+    public Label displacementMmLabel;
 
     private VibroCalc vibroCalcByAcceleration = new VibroCalcByAcceleration();
     private VibroCalc vibroCalcByVelocity = new VibroCalcByVelocity();
@@ -593,4 +605,37 @@ public class Controller implements Initializable {
 
         return parameters;
     }
+
+    public void setEnglish(MouseEvent mouseEvent) {
+        if (isEnglish.isSelected()) {
+            vibroCalcByAcceleration.setMeasures(Measures.ENGLISH);
+            vibroCalcByVelocity.setMeasures(Measures.ENGLISH);
+            vibroCalcByDisplacement.setMeasures(Measures.ENGLISH);
+
+            vDbMmSecLabel.setText("VdB re 1x10e-6 inch/sec");
+            vDbMSecLabel.setText("VdB re 1x10e-8 ft/sec");
+            AccelerationGLabel.setText("Виброускорение, g");
+            AccelerationMSec2Label.setText("Виброускорение, ft/sec2");
+            AccelerationMmSec2Label.setText("Виброускорение, inch/sec2");
+            velocityMSecLabel.setText("Виброскорость, ft/sec");
+            velocityMmSecLabel.setText("Виброскорость, inch/sec");
+            displacementMLabel.setText("Виброперемещение, inch");
+            displacementMmLabel.setText("Виброперемещение, mils");
+        } else {
+            vibroCalcByAcceleration.setMeasures(Measures.METRIC);
+            vibroCalcByVelocity.setMeasures(Measures.METRIC);
+            vibroCalcByDisplacement.setMeasures(Measures.METRIC);
+
+            vDbMmSecLabel.setText("VdB re 1x10e-6 мм/сек");
+            vDbMSecLabel.setText("VdB re 1x10e-8 м/с");
+            AccelerationGLabel.setText("Виброускорение, g");
+            AccelerationMSec2Label.setText("Виброускорение, м/с2");
+            AccelerationMmSec2Label.setText("Виброускорение, мм/с2");
+            velocityMSecLabel.setText("Виброскорость, м/с");
+            velocityMmSecLabel.setText("Виброскорость, мм/с");
+            displacementMLabel.setText("Виброперемещение, м");
+            displacementMmLabel.setText("Виброперемещение, мм");
+        }
+    }
+
 }
