@@ -1,15 +1,27 @@
 group 'VibroCalcApp'
 version '1.0-SNAPSHOT'
 
+buildscript {
+    dependencies {
+        classpath group: 'de.dynamicfiles.projects.gradle.plugins', name: 'javafx-gradle-plugin', version: '8.8.2'
+    }
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+}
+
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'application'
+apply plugin: 'javafx-gradle-plugin'
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 
 mainClassName = 'ru.minikh.vibrocalc.Main'
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 
@@ -18,3 +30,16 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+jfx {
+    mainClass = 'ru.minikh.vibrocalc.Main'
+
+    vendor = 'Vibrotest'
+    appName = "VibroCalc"
+}
+
+compileJava.options.encoding = 'UTF-8'
+
+//tasks.withType(JavaCompile) {
+//    options.encoding = 'UTF-8'
+//}
