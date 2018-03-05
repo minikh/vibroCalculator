@@ -1,11 +1,16 @@
 package ru.minikh.vibrocalc.calc;
 
 public enum EdIzm {
-    RMS("СКЗ"),
-    AVG("СЗ"),
-    PEAK("Пик"),
-    PEAK_TO_PEAK("Размах"),
-    NONE("нет");
+    RMS("rms"),
+    AVG("avg"),
+    PEAK("pk"),
+    PEAK_TO_PEAK("pk-pk"),
+    NONE("no");
+//    RMS("СКЗ"),
+//    AVG("СЗ"),
+//    PEAK("Пик"),
+//    PEAK_TO_PEAK("Размах"),
+//    NONE("нет");
 
     private String str;
 

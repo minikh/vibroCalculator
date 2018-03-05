@@ -47,6 +47,8 @@ public class Controller implements Initializable {
     public Label velocityMmSecLabel;
     public Label displacementMLabel;
     public Label displacementMmLabel;
+    public Label freqHzLabel;
+    public Label freqCpmLabel;
 
     private VibroCalc vibroCalcByAcceleration = new VibroCalcByAcceleration();
     private VibroCalc vibroCalcByVelocity = new VibroCalcByVelocity();
@@ -84,16 +86,12 @@ public class Controller implements Initializable {
 
     private KeyEvent lastKeyEvent;
 
-    private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
+    private final static String[] ED_IZM = {"rms", "avg", "pk", "pk-pk"};
+//    private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                edFreqHz.requestFocus();
-            }
-        });
+        Platform.runLater(() -> edFreqHz.requestFocus());
 
         accelerationGSelectEdIzm.getItems().addAll(ED_IZM);
         accelerationMsec2SelectEdIzm.getItems().addAll(ED_IZM);
@@ -638,20 +636,24 @@ public class Controller implements Initializable {
             vibroCalcByVelocity.setMeasures(Measures.ENGLISH);
             vibroCalcByDisplacement.setMeasures(Measures.ENGLISH);
 
+            freqHzLabel.setText("Frequency [Hz]");
+            freqCpmLabel.setText("Frequency [cpm]");
             vDbMmSecLabel.setText("VdB re 1x10e-6 inch/sec");
             vDbMSecLabel.setText("VdB re 1x10e-8 ft/sec");
-            AccelerationGLabel.setText("Виброускорение, g");
-            AccelerationMSec2Label.setText("Виброускорение, ft/sec2");
-            AccelerationMmSec2Label.setText("Виброускорение, inch/sec2");
-            velocityMSecLabel.setText("Виброскорость, ft/sec");
-            velocityMmSecLabel.setText("Виброскорость, inch/sec");
-            displacementMLabel.setText("Виброперемещение, inch");
-            displacementMmLabel.setText("Виброперемещение, mils");
+            AccelerationGLabel.setText("Acceleration, g");
+            AccelerationMSec2Label.setText("Acceleration, ft/sec2");
+            AccelerationMmSec2Label.setText("Acceleration, inch/sec2");
+            velocityMSecLabel.setText("Velocity, ft/sec");
+            velocityMmSecLabel.setText("Velocity, inch/sec");
+            displacementMLabel.setText("Displacement, inch");
+            displacementMmLabel.setText("Displacement, mils");
         } else {
             vibroCalcByAcceleration.setMeasures(Measures.METRIC);
             vibroCalcByVelocity.setMeasures(Measures.METRIC);
             vibroCalcByDisplacement.setMeasures(Measures.METRIC);
 
+            freqHzLabel.setText("Частота, Гц");
+            freqCpmLabel.setText("Частота, об/мин");
             vDbMmSecLabel.setText("VdB re 1x10e-6 мм/сек");
             vDbMSecLabel.setText("VdB re 1x10e-8 м/с");
             AccelerationGLabel.setText("Виброускорение, g");
