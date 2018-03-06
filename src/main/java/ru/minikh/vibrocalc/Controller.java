@@ -301,6 +301,7 @@ public class Controller implements Initializable {
 
     public void onEditAccelerationG(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
+        if (checkFreqByZerro()) return;
 
         String text = ((TextField) keyEvent.getSource()).getText();
 
@@ -319,6 +320,18 @@ public class Controller implements Initializable {
         applyResult(result, acceleration);
 
         lastKeyEvent = keyEvent;
+    }
+
+    private boolean checkFreqByZerro() {
+        try {
+            double freqHz = Double.parseDouble(edFreqHz.getText());
+            double freqCpm = Double.parseDouble(edFreqCpm.getText());
+
+            if (freqCpm == 0.0 || freqHz == 0.0) return true;
+        } catch (NumberFormatException e) {
+            return true;
+        }
+        return false;
     }
 
     public void onChangeAccelerationMsec2EdIzm(Event event) {
