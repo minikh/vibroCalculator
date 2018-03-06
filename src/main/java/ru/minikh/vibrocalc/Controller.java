@@ -11,12 +11,9 @@ import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import ru.minikh.vibrocalc.calc.*;
 
 import java.io.IOException;
@@ -301,7 +298,7 @@ public class Controller implements Initializable {
 
     public void onEditAccelerationG(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
-        if (checkFreqByZerro()) return;
+        if (checkFreqByZero()) return;
 
         String text = ((TextField) keyEvent.getSource()).getText();
 
@@ -322,7 +319,7 @@ public class Controller implements Initializable {
         lastKeyEvent = keyEvent;
     }
 
-    private boolean checkFreqByZerro() {
+    private boolean checkFreqByZero() {
         try {
             double freqHz = Double.parseDouble(edFreqHz.getText());
             double freqCpm = Double.parseDouble(edFreqCpm.getText());
