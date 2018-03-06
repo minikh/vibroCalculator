@@ -3,12 +3,20 @@ package ru.minikh.vibrocalc;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
+import javafx.stage.Window;
 import ru.minikh.vibrocalc.calc.*;
 
 import java.io.IOException;
@@ -672,5 +680,28 @@ public class Controller implements Initializable {
 
     public void edOnClick(MouseEvent mouseEvent) {
         ((TextField) mouseEvent.getSource()).selectAll();
+    }
+
+    public void btnRule(ActionEvent actionEvent) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/rule-window.fxml"));
+            Scene secondScene = new Scene(root, 500, 250);
+            Stage newWindow = new Stage();
+            newWindow.initModality(Modality.APPLICATION_MODAL);
+            newWindow.setTitle("Инструкция");
+            newWindow.setResizable(false);
+            newWindow.setScene(secondScene);
+
+            newWindow.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+//        StackPane secondaryLayout = new StackPane();
+//        secondaryLayout.getChildren().add(secondLabel);
+
+
+
+
     }
 }

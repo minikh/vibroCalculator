@@ -173,6 +173,7 @@
                 </TextField>
                 <Label fx:id="freqCpmLabel" contentDisplay="CENTER" text="Частота, об/мин" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="37.0" prefWidth="219.0" text="Сброс" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                <Button mnemonicParsing="false" onAction="#btnRule" prefHeight="37.0" prefWidth="219.0" text="Инструкция" GridPane.columnSpan="2" GridPane.rowIndex="4" />
                 <ImageView fitHeight="73.0" fitWidth="250.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="CENTER">
                     <image>
                         <Image url="@logo.JPG" />
