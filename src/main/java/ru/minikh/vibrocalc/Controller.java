@@ -23,9 +23,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class Controller implements Initializable {
 
@@ -94,28 +92,24 @@ public class Controller implements Initializable {
 
     private KeyEvent lastKeyEvent;
 
-    private final static String[] ED_IZM = {"rms", "avg", "pk", "pk-pk"};
-//    private final static String[] ED_IZM = {"СКЗ", "СЗ", "Пик", "Размах"};
+    private final static Map<Integer, String> english = EdIzm.getEnglish();
+    private final static Map<Integer, String> metric = EdIzm.getMetric();
+
+    int accelerationGSelectEdIzmIndex = 0;
+    int accelerationMsec2SelectEdIzmIndex = 0;
+    int accelerationMmSec2SelectEdIzmIndex = 0;
+    int velocityMsecSelectEdIzmIndex = 0;
+    int velocityMmSecSelectEdIzmIndex = 0;
+    int displacementMSelectEdIzmIndex = 3;
+    int displacementMmSelectEdIzmIndex = 3;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Platform.runLater(() -> edFreqHz.requestFocus());
 
-        accelerationGSelectEdIzm.getItems().addAll(ED_IZM);
-        accelerationMsec2SelectEdIzm.getItems().addAll(ED_IZM);
-        accelerationMmSec2SelectEdIzm.getItems().addAll(ED_IZM);
-        velocityMsecSelectEdIzm.getItems().addAll(ED_IZM);
-        velocityMmSecSelectEdIzm.getItems().addAll(ED_IZM);
-        displacementMSelectEdIzm.getItems().addAll(ED_IZM);
-        displacementMmSelectEdIzm.getItems().addAll(ED_IZM);
-
-        accelerationGSelectEdIzm.getSelectionModel().select(0);
-        accelerationMsec2SelectEdIzm.getSelectionModel().select(0);
-        accelerationMmSec2SelectEdIzm.getSelectionModel().select(0);
-        velocityMsecSelectEdIzm.getSelectionModel().select(0);
-        velocityMmSecSelectEdIzm.getSelectionModel().select(0);
-        displacementMSelectEdIzm.getSelectionModel().select(3);
-        displacementMmSelectEdIzm.getSelectionModel().select(3);
+        clear();
+        setMetric();
+        setSelectedEdIzm();
 
         accelerationGSelectEdIzmLastValue = EdIzm.getEdIzm((String) accelerationGSelectEdIzm.getSelectionModel().getSelectedItem());
         accelerationMsec2SelectEdIzmLastValue = EdIzm.getEdIzm((String) accelerationMsec2SelectEdIzm.getSelectionModel().getSelectedItem());
@@ -124,7 +118,6 @@ public class Controller implements Initializable {
         velocityMmSecSelectEdIzmLastValue = EdIzm.getEdIzm((String) velocityMmSecSelectEdIzm.getSelectionModel().getSelectedItem());
         displacementMSelectEdIzmLastValue = EdIzm.getEdIzm((String) displacementMSelectEdIzm.getSelectionModel().getSelectedItem());
         displacementMmSelectEdIzmLastValue = EdIzm.getEdIzm((String) displacementMmSelectEdIzm.getSelectionModel().getSelectedItem());
-
 
         row1.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #54548b, #8383db);");
         row2.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #54548b, #8383db);");
@@ -639,6 +632,9 @@ public class Controller implements Initializable {
     }
 
     public void setEnglish(MouseEvent mouseEvent) {
+        getSelectedEdIzm();
+        clear();
+
         if (isEnglish.isSelected()) {
             vibroCalcByAcceleration.setMeasures(Measures.ENGLISH);
             vibroCalcByVelocity.setMeasures(Measures.ENGLISH);
@@ -655,6 +651,16 @@ public class Controller implements Initializable {
             velocityMmSecLabel.setText("Velocity, inch/sec");
             displacementMLabel.setText("Displacement, inch");
             displacementMmLabel.setText("Displacement, mils");
+
+            accelerationGSelectEdIzm.getItems().clear();
+            accelerationMsec2SelectEdIzm.getItems().clear();
+            accelerationMmSec2SelectEdIzm.getItems().clear();
+            velocityMsecSelectEdIzm.getItems().clear();
+            velocityMmSecSelectEdIzm.getItems().clear();
+            displacementMSelectEdIzm.getItems().clear();
+            displacementMmSelectEdIzm.getItems().clear();
+
+            setEnglish();
         } else {
             vibroCalcByAcceleration.setMeasures(Measures.METRIC);
             vibroCalcByVelocity.setMeasures(Measures.METRIC);
@@ -671,11 +677,63 @@ public class Controller implements Initializable {
             velocityMmSecLabel.setText("Виброскорость, мм/с");
             displacementMLabel.setText("Виброперемещение, м");
             displacementMmLabel.setText("Виброперемещение, мм");
+
+            setMetric();
         }
+
+        setSelectedEdIzm();
 
         if (lastKeyEvent != null) {
             Event.fireEvent(lastKeyEvent.getTarget(), lastKeyEvent);
         }
+    }
+
+    private void clear() {
+        accelerationGSelectEdIzm.getItems().clear();
+        accelerationMsec2SelectEdIzm.getItems().clear();
+        accelerationMmSec2SelectEdIzm.getItems().clear();
+        velocityMsecSelectEdIzm.getItems().clear();
+        velocityMmSecSelectEdIzm.getItems().clear();
+        displacementMSelectEdIzm.getItems().clear();
+        displacementMmSelectEdIzm.getItems().clear();
+    }
+
+    private void setEnglish() {
+        setEdIzm(english.values());
+    }
+
+    private void setMetric() {
+        setEdIzm(metric.values());
+    }
+
+    private void setEdIzm(Collection<String> values) {
+        accelerationGSelectEdIzm.getItems().addAll(values);
+        accelerationMsec2SelectEdIzm.getItems().addAll(values);
+        accelerationMmSec2SelectEdIzm.getItems().addAll(values);
+        velocityMsecSelectEdIzm.getItems().addAll(values);
+        velocityMmSecSelectEdIzm.getItems().addAll(values);
+        displacementMSelectEdIzm.getItems().addAll(values);
+        displacementMmSelectEdIzm.getItems().addAll(values);
+    }
+
+    private void getSelectedEdIzm() {
+        accelerationGSelectEdIzmIndex = accelerationGSelectEdIzm.getSelectionModel().getSelectedIndex();
+        accelerationMsec2SelectEdIzmIndex = accelerationMsec2SelectEdIzm.getSelectionModel().getSelectedIndex();
+        accelerationMmSec2SelectEdIzmIndex = accelerationMmSec2SelectEdIzm.getSelectionModel().getSelectedIndex();
+        velocityMsecSelectEdIzmIndex = velocityMsecSelectEdIzm.getSelectionModel().getSelectedIndex();
+        velocityMmSecSelectEdIzmIndex = velocityMmSecSelectEdIzm.getSelectionModel().getSelectedIndex();
+        displacementMSelectEdIzmIndex = displacementMSelectEdIzm.getSelectionModel().getSelectedIndex();
+        displacementMmSelectEdIzmIndex = displacementMmSelectEdIzm.getSelectionModel().getSelectedIndex();
+    }
+
+    private void setSelectedEdIzm() {
+        accelerationGSelectEdIzm.getSelectionModel().select(accelerationGSelectEdIzmIndex);
+        accelerationMsec2SelectEdIzm.getSelectionModel().select(accelerationMsec2SelectEdIzmIndex);
+        accelerationMmSec2SelectEdIzm.getSelectionModel().select(accelerationMmSec2SelectEdIzmIndex);
+        velocityMsecSelectEdIzm.getSelectionModel().select(velocityMsecSelectEdIzmIndex);
+        velocityMmSecSelectEdIzm.getSelectionModel().select(velocityMmSecSelectEdIzmIndex);
+        displacementMSelectEdIzm.getSelectionModel().select(displacementMSelectEdIzmIndex);
+        displacementMmSelectEdIzm.getSelectionModel().select(displacementMmSelectEdIzmIndex);
     }
 
     public void edOnClick(MouseEvent mouseEvent) {
@@ -699,8 +757,6 @@ public class Controller implements Initializable {
 
 //        StackPane secondaryLayout = new StackPane();
 //        secondaryLayout.getChildren().add(secondLabel);
-
-
 
 
     }
