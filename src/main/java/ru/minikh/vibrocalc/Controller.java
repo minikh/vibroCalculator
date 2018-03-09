@@ -97,8 +97,8 @@ public class Controller implements Initializable {
     int accelerationMmSec2SelectEdIzmIndex = 0;
     int velocityMsecSelectEdIzmIndex = 0;
     int velocityMmSecSelectEdIzmIndex = 0;
-    int displacementMSelectEdIzmIndex = 3;
-    int displacementMmSelectEdIzmIndex = 3;
+    int displacementMSelectEdIzmIndex = 2;
+    int displacementMmSelectEdIzmIndex = 2;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

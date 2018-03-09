@@ -42,12 +42,14 @@ public enum EdIzm {
     public static Map<Integer, String> getEnglish() {
         return Arrays.stream(EdIzm.values())
                 .filter(e -> e != NONE)
+                .filter(e -> e != AVG)
                 .collect(Collectors.toMap(EdIzm::getPosition, p -> p.english));
     }
 
     public static Map<Integer, String> getMetric() {
         return Arrays.stream(EdIzm.values())
                 .filter(e -> e != NONE)
+                .filter(e -> e != AVG)
                 .collect(Collectors.toMap(EdIzm::getPosition, p -> p.metric));
     }
 }
