@@ -17,7 +17,7 @@
     </rowConstraints>
    <children>
       <Button fx:id="btnCloseWindow" mnemonicParsing="false" onAction="#closeWindow" prefHeight="31.0" prefWidth="109.0" text="OK" GridPane.rowIndex="1" />
-      <TextArea editable="false" prefHeight="455.0" prefWidth="435.0" text="1. Введите значение частоты.&#10;2. Переключите Метрические или English единицы измерения.&#10;3. Введите значение для пересчета в соответствующее поле.&#10;(точка - разделитель десятичных знаков)&#10;4. В других полях появится результат пересчета.&#10;Все вопросы пишите на контактную почту." wrapText="true">
+      <TextArea editable="false" prefHeight="455.0" prefWidth="435.0" text="1. Введите значение частоты.&#10;2. Переключите Метрические или English единицы измерения.&#10;3. Введите значение для пересчета в соответствующее поле.&#10;(точка - разделитель десятичных знаков)&#10;4. В других полях появится результат пересчета.&#10;Все вопросы пишите на контактную почту: info@vibrotest.net." wrapText="true">
          <font>
             <Font size="16.0" />
          </font></TextArea>

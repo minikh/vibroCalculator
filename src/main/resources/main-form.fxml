@@ -152,9 +152,10 @@
                 <RowConstraints maxHeight="283.0" minHeight="37.0" prefHeight="37.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="298.0" minHeight="37.0" prefHeight="37.0" />
                 <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="60.0" />
-                <RowConstraints maxHeight="211.0" minHeight="7.0" prefHeight="37.0" />
-                <RowConstraints maxHeight="172.0" minHeight="8.0" prefHeight="165.0" />
-                <RowConstraints maxHeight="106.0" minHeight="8.0" prefHeight="72.0" />
+                <RowConstraints maxHeight="211.0" minHeight="7.0" prefHeight="60.0" />
+                <RowConstraints maxHeight="172.0" minHeight="8.0" prefHeight="89.0" />
+                <RowConstraints maxHeight="172.0" minHeight="8.0" prefHeight="50.0" />
+                <RowConstraints maxHeight="106.0" minHeight="72.0" prefHeight="72.0" />
             </rowConstraints>
             <children>
                 <Region fx:id="row20" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
@@ -173,8 +174,8 @@
                 </TextField>
                 <Label fx:id="freqCpmLabel" contentDisplay="CENTER" text="Частота, об/мин" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                 <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="37.0" prefWidth="219.0" text="Сброс" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                <Button mnemonicParsing="false" onAction="#btnRule" prefHeight="37.0" prefWidth="219.0" text="Инструкция" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                <ImageView fitHeight="73.0" fitWidth="250.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="5" GridPane.valignment="CENTER">
+                <Button mnemonicParsing="false" onAction="#btnRule" prefHeight="37.0" prefWidth="219.0" text="Инструкция" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                <ImageView fitHeight="73.0" fitWidth="250.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.valignment="CENTER">
                     <image>
                         <Image url="@logo.JPG" />
                     </image>
