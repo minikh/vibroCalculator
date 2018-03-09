@@ -7,7 +7,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -20,7 +23,10 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
 
@@ -92,13 +98,15 @@ public class Controller implements Initializable {
     private final static Map<Integer, String> english = EdIzm.getEnglish();
     private final static Map<Integer, String> metric = EdIzm.getMetric();
 
-    int accelerationGSelectEdIzmIndex = 0;
-    int accelerationMsec2SelectEdIzmIndex = 0;
-    int accelerationMmSec2SelectEdIzmIndex = 0;
-    int velocityMsecSelectEdIzmIndex = 0;
-    int velocityMmSecSelectEdIzmIndex = 0;
-    int displacementMSelectEdIzmIndex = 2;
-    int displacementMmSelectEdIzmIndex = 2;
+    private int accelerationGSelectEdIzmIndex = 0;
+    private int accelerationMsec2SelectEdIzmIndex = 0;
+    private int accelerationMmSec2SelectEdIzmIndex = 0;
+    private int velocityMsecSelectEdIzmIndex = 0;
+    private int velocityMmSecSelectEdIzmIndex = 0;
+    private int displacementMSelectEdIzmIndex = 2;
+    private int displacementMmSelectEdIzmIndex = 2;
+
+    private Double fromMetricKoeff = 1.0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -186,6 +194,9 @@ public class Controller implements Initializable {
 
         resetResult();
         edFreqCpm.setText(String.valueOf(freq * 60));
+
+//        lastKeyEvent = keyEvent;
+//        fromMetricKoeff = MetricToEnglishKoeff.NONE;
     }
 
     public void onEditFreqCpm(KeyEvent keyEvent) {
@@ -205,6 +216,9 @@ public class Controller implements Initializable {
 
         resetResult();
         edFreqHz.setText(String.valueOf(freq / 60));
+
+//        lastKeyEvent = keyEvent;
+//        fromMetricKoeff = MetricToEnglishKoeff.NONE;
     }
 
     public void btnResetResult(ActionEvent actionEvent) {
@@ -232,6 +246,7 @@ public class Controller implements Initializable {
         applyResult(result, acceleration);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.NONE;
     }
 
     public void onEditVdbMmSec(KeyEvent keyEvent) {
@@ -254,6 +269,7 @@ public class Controller implements Initializable {
         applyResult(result, velocity);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_INCH;
     }
 
     public void onEditVdbMsec(KeyEvent keyEvent) {
@@ -276,6 +292,7 @@ public class Controller implements Initializable {
         applyResult(result, velocity);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT;
     }
 
     public void onChangeAccelerationGEdIzm(Event event) {
@@ -317,6 +334,7 @@ public class Controller implements Initializable {
         applyResult(result, acceleration);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.NONE;
     }
 
     private boolean checkFreqByZero() {
@@ -369,6 +387,7 @@ public class Controller implements Initializable {
         applyResult(result, acceleration);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT;
     }
 
     public void onChangeAccelerationMmSec2EdIzm(Event event) {
@@ -409,6 +428,7 @@ public class Controller implements Initializable {
         applyResult(result, acceleration);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_INCH;
     }
 
     public void onChangeVelocityMsecEdIzm(Event event) {
@@ -449,6 +469,7 @@ public class Controller implements Initializable {
         applyResult(result, velocity);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.M_TO_FT;
     }
 
     public void onChangeVelocityMmSecEdIzm(Event event) {
@@ -489,6 +510,7 @@ public class Controller implements Initializable {
         applyResult(result, velocity);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_INCH;
     }
 
     public void onChangeDisplacementMEdIzm(Event event) {
@@ -529,6 +551,7 @@ public class Controller implements Initializable {
         applyResult(result, displacement);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.M_TO_INCH;
     }
 
     public void onChangeDisplacementMmEdIzm(Event event) {
@@ -569,6 +592,7 @@ public class Controller implements Initializable {
         applyResult(result, displacement);
 
         lastKeyEvent = keyEvent;
+        fromMetricKoeff = MetricToEnglishKoeff.MM_TO_MILS;
     }
 
     private void applyResult(Result result, Value value) {
@@ -642,10 +666,21 @@ public class Controller implements Initializable {
     }
 
     public void setEnglish(MouseEvent mouseEvent) {
+        TextField textField = null;
+        if (lastKeyEvent != null) {
+            textField = (TextField) lastKeyEvent.getTarget();
+        }
+
         getSelectedEdIzm();
         clear();
 
         if (isEnglish.isSelected()) {
+            if (textField != null && !isNotNumeric(textField.getText())) {
+                Double value = Double.valueOf(textField.getText());
+                value *= fromMetricKoeff;
+                textField.setText(String.valueOf(value));
+
+            }
             vibroCalcByAcceleration.setMeasures(Measures.ENGLISH);
             vibroCalcByVelocity.setMeasures(Measures.ENGLISH);
             vibroCalcByDisplacement.setMeasures(Measures.ENGLISH);
@@ -672,6 +707,12 @@ public class Controller implements Initializable {
 
             setEnglish();
         } else {
+            if (textField != null && !isNotNumeric(textField.getText())) {
+                Double value = Double.valueOf(textField.getText());
+                value /= fromMetricKoeff;
+                textField.setText(String.valueOf(value));
+
+            }
             vibroCalcByAcceleration.setMeasures(Measures.METRIC);
             vibroCalcByVelocity.setMeasures(Measures.METRIC);
             vibroCalcByDisplacement.setMeasures(Measures.METRIC);
