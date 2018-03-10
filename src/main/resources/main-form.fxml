@@ -185,12 +185,12 @@
                 <VBox prefHeight="311.0" prefWidth="219.0" spacing="7.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
                     <children>
                         <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="37.0" prefWidth="219.0" text="Сброс" />
-                        <ImageView fitHeight="135.0" fitWidth="218.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="135.0" fitWidth="218.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@logo2.jpg" />
                             </image>
                             <cursor>
-                                <Cursor fx:constant="HAND" />
+                                <Cursor fx:constant="DEFAULT" />
                             </cursor>
                         </ImageView>
                         <Button mnemonicParsing="false" onAction="#btnRule" prefHeight="37.0" prefWidth="219.0" text="Инструкция" />
