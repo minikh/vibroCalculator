@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <GridPane alignment="center" hgap="10" prefHeight="550.0" prefWidth="800.0" vgap="10" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.minikh.vibrocalc.Controller">
@@ -151,11 +152,9 @@
             <rowConstraints>
                 <RowConstraints maxHeight="37.0" minHeight="37.0" prefHeight="37.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="37.0" minHeight="37.0" prefHeight="37.0" />
-                <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="31.0" />
-                <RowConstraints maxHeight="211.0" minHeight="42.0" prefHeight="38.0" />
-                <RowConstraints maxHeight="172.0" minHeight="8.0" prefHeight="139.0" />
-                <RowConstraints maxHeight="42.0" minHeight="8.0" prefHeight="42.0" />
-                <RowConstraints maxHeight="106.0" minHeight="72.0" prefHeight="72.0" />
+                <RowConstraints maxHeight="251.0" minHeight="9.0" prefHeight="51.0" />
+            <RowConstraints maxHeight="300.0" minHeight="300.0" prefHeight="300.0" />
+            <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" />
             </rowConstraints>
             <children>
                 <Region fx:id="row20" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
@@ -173,24 +172,7 @@
                     </GridPane.margin>
                 </TextField>
                 <Label fx:id="freqCpmLabel" contentDisplay="CENTER" text="Частота, об/мин" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="37.0" prefWidth="219.0" text="Сброс" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                <ImageView fitHeight="133.0" fitWidth="222.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="4" GridPane.valignment="CENTER">
-                    <image>
-                        <Image url="@logo2.jpg" />
-                    </image>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </ImageView>
-                <Button mnemonicParsing="false" onAction="#btnRule" prefHeight="37.0" prefWidth="219.0" text="Инструкция" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-                <ImageView fitHeight="73.0" fitWidth="250.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.valignment="CENTER">
-                    <image>
-                        <Image url="@logo.JPG" />
-                    </image>
-                    <cursor>
-                        <Cursor fx:constant="HAND" />
-                    </cursor>
-                </ImageView>
+
                 <RadioButton fx:id="isEnglish" mnemonicParsing="false" onMouseClicked="#setEnglish" selected="true" text="English" GridPane.rowIndex="2">
                     <toggleGroup>
                         <ToggleGroup fx:id="rbGroup" />
@@ -200,9 +182,34 @@
                <padding>
                   <Insets left="10.0" />
                </padding></RadioButton>
+                <VBox prefHeight="311.0" prefWidth="219.0" spacing="7.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#btnResetResult" prefHeight="37.0" prefWidth="219.0" text="Сброс" />
+                        <ImageView fitHeight="135.0" fitWidth="218.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@logo2.jpg" />
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ImageView>
+                        <Button mnemonicParsing="false" onAction="#btnRule" prefHeight="37.0" prefWidth="219.0" text="Инструкция" />
+                        <ImageView fitHeight="73.0" fitWidth="250.0" onMouseClicked="#openUrl" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@logo.JPG" />
+                            </image>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </ImageView>
+                    </children>
+               <GridPane.margin>
+                  <Insets left="3.0" />
+               </GridPane.margin>
+                </VBox>
             </children>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets left="5.0" right="5.0" top="5.0" />
             </padding>
         </GridPane>
         <Label text="ВИБРОКАЛЬКУЛЯТОР" GridPane.columnSpan="3">
