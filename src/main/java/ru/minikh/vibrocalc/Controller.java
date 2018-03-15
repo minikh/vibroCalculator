@@ -42,6 +42,8 @@ public class Controller implements Initializable {
     public Region row10;
     public Region row20;
     public Region row21;
+    public Region row22;
+    public Region row23;
 
     public RadioButton isEnglish;
     public RadioButton isMetric;
@@ -58,6 +60,9 @@ public class Controller implements Initializable {
     public Label displacementMmLabel;
     public Label freqHzLabel;
     public Label freqCpmLabel;
+    public Label tempCLabel;
+    public Label tempFLabel;
+
 
     private VibroCalc vibroCalcByAcceleration = new VibroCalcByAcceleration();
     private VibroCalc vibroCalcByVelocity = new VibroCalcByVelocity();
@@ -73,6 +78,8 @@ public class Controller implements Initializable {
     public TextField edVelocityMmSec;
     public TextField edDisplacementM;
     public TextField edDisplacementMm;
+    public TextField edTempC;
+    public TextField edTempF;
 
     public ComboBox accelerationGSelectEdIzm;
     public ComboBox accelerationMsec2SelectEdIzm;
@@ -177,6 +184,14 @@ public class Controller implements Initializable {
         edDisplacementMm.setText("0");
     }
 
+    public void onEditTempC(KeyEvent keyEvent) {
+
+    }
+
+    public void onEditTempF(KeyEvent keyEvent) {
+
+    }
+
     public void onEditFreqHz(KeyEvent keyEvent) {
         if (keyEvent.getCode() != KeyCode.ENTER) return;
 
@@ -194,9 +209,6 @@ public class Controller implements Initializable {
 
         resetResult();
         edFreqCpm.setText(String.valueOf(freq * 60));
-
-//        lastKeyEvent = keyEvent;
-//        fromMetricKoeff = MetricToEnglishKoeff.NONE;
     }
 
     public void onEditFreqCpm(KeyEvent keyEvent) {
@@ -216,9 +228,6 @@ public class Controller implements Initializable {
 
         resetResult();
         edFreqHz.setText(String.valueOf(freq / 60));
-
-//        lastKeyEvent = keyEvent;
-//        fromMetricKoeff = MetricToEnglishKoeff.NONE;
     }
 
     public void btnResetResult(ActionEvent actionEvent) {
