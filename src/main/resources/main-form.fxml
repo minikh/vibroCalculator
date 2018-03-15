@@ -155,7 +155,7 @@
             <rowConstraints>
                 <RowConstraints maxHeight="37.0" minHeight="37.0" prefHeight="37.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="37.0" minHeight="37.0" prefHeight="37.0" />
-                <RowConstraints maxHeight="49.0" minHeight="40.0" prefHeight="45.0" />
+                <RowConstraints maxHeight="47.0" minHeight="40.0" prefHeight="47.0" />
                 <RowConstraints maxHeight="37.0" minHeight="37.0" prefHeight="37.0" />
                 <RowConstraints maxHeight="37.0" minHeight="37.0" prefHeight="37.0" />
                 <RowConstraints maxHeight="300.0" minHeight="211.0" prefHeight="211.0" />
@@ -183,25 +183,28 @@
                         <ToggleGroup fx:id="rbGroup" />
                     </toggleGroup>
                 </RadioButton>
+
                 <RadioButton fx:id="isMetric" mnemonicParsing="false" onMouseClicked="#setEnglish" selected="true" text="Metric" toggleGroup="$rbGroup" GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <padding>
                         <Insets left="10.0" />
                     </padding>
                 </RadioButton>
-                <Region fx:id="row22" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+
+                <Region fx:id="row22" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="3" />
                 <TextField fx:id="edTempC" onKeyReleased="#onEditTempC" onMouseClicked="#edOnClick" prefHeight="31.0" prefWidth="95.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="3">
                     <GridPane.margin>
                         <Insets left="5.0" />
                     </GridPane.margin>
                 </TextField>
-                <Label fx:id="tempCLabel" contentDisplay="CENTER" text="Температура, C" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-                <Region fx:id="row23" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                <Label fx:id="tempCLabel" contentDisplay="CENTER" text="Температура, C" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+                <Region fx:id="row23" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="4" />
                 <TextField fx:id="edTempF" onKeyReleased="#onEditTempF" onMouseClicked="#edOnClick" prefHeight="31.0" prefWidth="95.0" text="0" GridPane.columnIndex="0" GridPane.rowIndex="4">
                     <GridPane.margin>
                         <Insets left="5.0" />
                     </GridPane.margin>
                 </TextField>
-                <Label fx:id="tempFLabel" contentDisplay="CENTER" text="Температура, F" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label fx:id="tempFLabel" contentDisplay="CENTER" text="Температура, F" textAlignment="JUSTIFY" textFill="#f5f3f3" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
                 <VBox prefHeight="311.0" prefWidth="219.0" spacing="7.0" GridPane.columnSpan="2" GridPane.rowIndex="5">
                     <children>
@@ -217,7 +220,7 @@
                         <Button mnemonicParsing="false" onAction="#btnRule" prefHeight="37.0" prefWidth="219.0" text="Инструкция" />
                     </children>
                     <GridPane.margin>
-                        <Insets left="3.0" />
+                        <Insets />
                     </GridPane.margin>
                 </VBox>
             </children>

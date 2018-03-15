@@ -147,6 +147,8 @@ public class Controller implements Initializable {
 
         row20.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #535353, #9a9a9a);");
         row21.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #535353, #9a9a9a);");
+        row22.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #535353, #9a9a9a);");
+        row23.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #535353, #9a9a9a);");
     }
 
     private Double getFreq() {
@@ -171,6 +173,11 @@ public class Controller implements Initializable {
         edFreqCpm.setText("0");
     }
 
+    private void resetTemp() {
+        edTempC.setText("0");
+        edTempF.setText("0");
+    }
+
     private void resetResult() {
         edAdb.setText("0");
         edVdbMmSec.setText("0");
@@ -185,11 +192,39 @@ public class Controller implements Initializable {
     }
 
     public void onEditTempC(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = edTempC.getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double temp = Double.parseDouble(text);
+
+        if (temp < -273.15 || temp > 10_000) {
+            AppAlert.showErrorAlert("Введите число от -273.15 до 10 000");
+            edTempC.selectAll();
+            return;
+        }
+
+        edTempF.setText(String.valueOf(1.8 * temp + 32));
     }
 
     public void onEditTempF(KeyEvent keyEvent) {
+        if (keyEvent.getCode() != KeyCode.ENTER) return;
 
+        String text = edTempF.getText();
+
+        if (isNotNumeric(text)) return;
+
+        Double temp = Double.parseDouble(text);
+
+        if (temp < -459.67 || temp > 10_000) {
+            AppAlert.showErrorAlert("Введите число от -459.67 до 10 000");
+            edTempF.selectAll();
+            return;
+        }
+
+        edTempC.setText(String.valueOf((temp - 32) / 1.8));
     }
 
     public void onEditFreqHz(KeyEvent keyEvent) {
@@ -233,6 +268,7 @@ public class Controller implements Initializable {
     public void btnResetResult(ActionEvent actionEvent) {
         resetResult();
         resetFreq();
+        resetTemp();
     }
 
     public void onEditAdb(KeyEvent keyEvent) {
@@ -696,6 +732,8 @@ public class Controller implements Initializable {
 
             freqHzLabel.setText("Frequency [Hz]");
             freqCpmLabel.setText("Frequency [cpm]");
+            tempCLabel.setText("Temp, C");
+            tempFLabel.setText("Temp, F");
             vDbMmSecLabel.setText("VdB re 1x10e-6 inch/sec");
             vDbMSecLabel.setText("VdB re 1x10e-8 ft/sec");
             AccelerationGLabel.setText("Acceleration, g");
@@ -728,6 +766,8 @@ public class Controller implements Initializable {
 
             freqHzLabel.setText("Частота, Гц");
             freqCpmLabel.setText("Частота, об/мин");
+            tempCLabel.setText("Температура, C");
+            tempFLabel.setText("Температура, F");
             vDbMmSecLabel.setText("VdB re 1x10e-6 мм/сек");
             vDbMSecLabel.setText("VdB re 1x10e-8 м/с");
             AccelerationGLabel.setText("Виброускорение, g");
