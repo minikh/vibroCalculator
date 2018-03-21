@@ -684,7 +684,7 @@ public class Controller implements Initializable {
 
     public void openUrl(MouseEvent mouseEvent) {
         try {
-            java.awt.Desktop.getDesktop().browse(new URI("www.vibrtest.ru"));
+            java.awt.Desktop.getDesktop().browse(new URI("www.vibrotest.ru"));
         } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
